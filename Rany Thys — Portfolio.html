@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rany Thys — Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --red: #E8001A;
+    --gray: #F2F2F2;
+    --mid: #888888;
+    --pad: clamp(24px, 6vw, 80px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px var(--pad);
+    background: var(--white);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-color: #E0E0E0; }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--black);
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeIn 0.6s 1.8s forwards;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; opacity: 0; animation: fadeIn 0.6s 1.8s forwards; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--black); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--red); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 var(--pad) clamp(48px, 8vh, 100px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px; font-weight: 500; color: var(--mid);
+    letter-spacing: 1px; margin-bottom: 16px;
+    opacity: 0; animation: fadeIn 0.5s 0.3s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 16vw, 220px);
+    line-height: 0.88;
+    color: var(--black);
+    overflow: hidden;
+  }
+  .hero-name span {
+    display: block;
+    transform: translateY(110%);
+    animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-name span:nth-child(1) { animation-delay: 0.4s; }
+  .hero-name span:nth-child(2) { animation-delay: 0.55s; }
+
+  .hero-rule {
+    width: 0; height: 2px;
+    background: var(--red);
+    margin: 28px 0;
+    animation: expandRule 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+  }
+
+  .hero-tagline {
+    font-size: clamp(15px, 2vw, 20px);
+    font-weight: 300; color: var(--black);
+    max-width: 520px; line-height: 1.5;
+    opacity: 0; animation: fadeIn 0.7s 1.4s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: clamp(24px, 4vh, 48px); right: var(--pad);
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 500; color: var(--mid); letter-spacing: 1px;
+    opacity: 0; animation: fadeIn 0.6s 2s forwards;
+    writing-mode: vertical-rl;
+  }
+  .hero-scroll::before {
+    content: ''; display: block;
+    width: 1px; height: 48px; background: var(--mid);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: clamp(64px, 10vh, 120px) var(--pad); }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; color: var(--red);
+    letter-spacing: 2px; margin-bottom: 48px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: #E0E0E0; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--gray); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  .about-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95;
+    color: var(--black);
+  }
+  .about-body { font-size: 16px; font-weight: 300; line-height: 1.75; color: #333; }
+  .about-body p + p { margin-top: 20px; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 32px; }
+  .skill-item {
+    font-size: 13px; font-weight: 500; color: var(--black);
+    padding: 12px 0; border-top: 1px solid #D8D8D8;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-list { display: flex; flex-direction: column; }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 32px; align-items: start;
+    padding: 40px 0;
+    border-top: 1px solid #E0E0E0;
+    cursor: default;
+    transition: background 0.2s;
+  }
+  .project-item:last-child { border-bottom: 1px solid #E0E0E0; }
+  .project-item:hover { background: var(--gray); padding-left: 16px; padding-right: 16px; margin: 0 -16px; }
+
+  .project-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; line-height: 1;
+    color: #D8D8D8;
+    padding-top: 4px;
+  }
+  .project-content { flex: 1; }
+  .project-type {
+    font-size: 11px; font-weight: 600; color: var(--red);
+    letter-spacing: 1.5px; margin-bottom: 8px;
+  }
+  .project-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1; color: var(--black); margin-bottom: 12px;
+  }
+  .project-desc { font-size: 15px; font-weight: 300; color: #555; line-height: 1.6; max-width: 560px; }
+  .project-link {
+    display: inline-block; margin-top: 12px;
+    font-size: 12px; font-weight: 500; color: var(--mid);
+    text-decoration: none; letter-spacing: 0.3px;
+    border-bottom: 1px solid #D0D0D0;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .project-link:hover { color: var(--red); border-color: var(--red); }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag {
+    font-size: 11px; font-weight: 500;
+    border: 1px solid #D0D0D0; color: #555;
+    padding: 4px 10px;
+  }
+  .project-arrow {
+    font-size: 32px; color: #D0D0D0;
+    align-self: center;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .project-item:hover .project-arrow { color: var(--red); transform: translateX(4px); }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--black); color: var(--white); }
+  .contact .section-label { color: var(--red); }
+  .contact .section-label::after { background: #333; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: end; }
+  .contact-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 0.95; color: var(--white);
+  }
+  .contact-headline em { color: var(--red); font-style: normal; }
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+  .contact-line { font-size: 14px; font-weight: 300; color: #999; letter-spacing: 0.3px; }
+  .contact-value { font-size: 18px; font-weight: 500; color: var(--white); margin-top: 4px; }
+  .contact-value a { color: var(--white); text-decoration: none; border-bottom: 1px solid #444; transition: border-color 0.2s; }
+  .contact-value a:hover { border-color: var(--red); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 24px var(--pad);
+    border-top: 1px solid #E0E0E0;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name { font-size: 13px; font-weight: 500; color: var(--mid); }
+  .footer-copy { font-size: 12px; color: #BBBBBB; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { to { transform: translateY(0); } }
+  @keyframes expandRule { to { width: clamp(80px, 12vw, 160px); } }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .project-item { grid-template-columns: 48px 1fr; }
+    .project-arrow { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">RT</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Full-Stack Developer &nbsp;/&nbsp; Malden, MA</p>
+  <h1 class="hero-name">
+    <span>RANY</span>
+    <span>THYS</span>
+  </h1>
+  <div class="hero-rule"></div>
+  <p class="hero-tagline">I build web applications and websites that work — from concept to deployment. Landing pages, full-stack apps, and everything between.</p>
+  <span class="hero-scroll">Scroll</span>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <p class="section-label reveal">About</p>
+  <div class="about-grid">
+    <h2 class="about-headline reveal">Builder.<br>Not<br>Template.</h2>
+    <div class="about-body reveal">
+      <p>I have been building for the web for over five years — landing pages, full-stack apps, scheduling platforms, e-commerce sites, and everything between. Every project starts from a real brief and ends with a deployed product.</p>
+      <p>My background spans international business leadership, operations management, and 20+ years of delivering results across industries and countries. That context shapes how I think about what I build — functionality first, presentation always.</p>
+      <div class="skills-grid">
+        <span class="skill-item">HTML / CSS / JS</span>
+        <span class="skill-item">React</span>
+        <span class="skill-item">Python</span>
+        <span class="skill-item">PostgreSQL</span>
+        <span class="skill-item">Authentication</span>
+        <span class="skill-item">REST APIs</span>
+        <span class="skill-item">Cloud Deployment</span>
+        <span class="skill-item">DNS / Domains</span>
+        <span class="skill-item">Tailwind CSS</span>
+        <span class="skill-item">Mobile-first</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Selected Work</p>
+  <div class="projects-list">
+
+    <div class="project-item reveal">
+      <span class="project-num">01</span>
+      <div class="project-content">
+        <p class="project-type">Web Application</p>
+        <h3 class="project-title">Interpreter Scheduling Platform</h3>
+        <p class="project-desc">Scheduling and management platform for interpreter services. Secure login, protected routing, and mobile-responsive appointment management across multiple user types.</p>
+        <a href="https://scheduleint.com" class="project-link" target="_blank">scheduleint.com</a>
+        <div class="project-tags">
+          <span class="tag">Web App</span><span class="tag">Scheduling</span><span class="tag">Secure Login</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">02</span>
+      <div class="project-content">
+        <p class="project-type">Web Application</p>
+        <h3 class="project-title">Catering Cost Control App</h3>
+        <p class="project-desc">Web application for a catering operation covering inventory management, recipe costing, invoicing, and reporting. Deployed to production with a custom domain.</p>
+        <div class="project-tags">
+          <span class="tag">Web App</span><span class="tag">Inventory</span><span class="tag">Invoicing</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">03</span>
+      <div class="project-content">
+        <p class="project-type">Web Application</p>
+        <h3 class="project-title">Association Management Platform</h3>
+        <p class="project-desc">Management platform for professional associations with secure access control, member management flows, and protected areas for different user roles.</p>
+        <div class="project-tags">
+          <span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Secure Login</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">04</span>
+      <div class="project-content">
+        <p class="project-type">Web Application</p>
+        <h3 class="project-title">Personal Finance App</h3>
+        <p class="project-desc">Personal finance application with dynamic budget categories, income goal tracking, opening and closing balances, and a collapsible budget system.</p>
+        <div class="project-tags">
+          <span class="tag">Web App</span><span class="tag">Finance</span><span class="tag">Dashboard</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">05</span>
+      <div class="project-content">
+        <p class="project-type">Website</p>
+        <h3 class="project-title">Cybersecurity Company</h3>
+        <p class="project-desc">Conversion-focused landing page with an animated fiber optic hero header, free assessment tool, service packages, and clear calls to action.</p>
+        <a href="https://www.tainoshield.com" class="project-link" target="_blank">tainoshield.com</a>
+        <div class="project-tags">
+          <span class="tag">Landing Page</span><span class="tag">Animation</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">06</span>
+      <div class="project-content">
+        <p class="project-type">Website</p>
+        <h3 class="project-title">Wellness Brand</h3>
+        <p class="project-desc">Bilingual French and English site for a wellness and personal development brand. Animated language toggle, scroll-based reveal effects, and email capture.</p>
+        <a href="https://www.lessencedesetres.com" class="project-link" target="_blank">lessencedesetres.com</a>
+        <div class="project-tags">
+          <span class="tag">Bilingual</span><span class="tag">Animation</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">07</span>
+      <div class="project-content">
+        <p class="project-type">Website</p>
+        <h3 class="project-title">Community Health Foundation</h3>
+        <p class="project-desc">Full website rebuild with scroll animations, real photo integration, a custom content management panel, and complete deployment setup.</p>
+        <a href="https://neriahcommunityhealth.org" class="project-link" target="_blank">neriahcommunityhealth.org</a>
+        <div class="project-tags">
+          <span class="tag">Multi-page</span><span class="tag">Nonprofit</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">08</span>
+      <div class="project-content">
+        <p class="project-type">Website</p>
+        <h3 class="project-title">Adult Day Health Center</h3>
+        <p class="project-desc">Mobile-responsive multi-page site for a health services center, built for clarity and accessibility across all devices.</p>
+        <a href="https://larondeadhc.com" class="project-link" target="_blank">larondeadhc.com</a>
+        <div class="project-tags">
+          <span class="tag">Multi-page</span><span class="tag">Healthcare</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-item reveal">
+      <span class="project-num">09</span>
+      <div class="project-content">
+        <p class="project-type">Website</p>
+        <h3 class="project-title">Eco-Resort</h3>
+        <p class="project-desc">Editorial-style site for a Cap-Haïtien eco-resort. Real photography and an immersive layout built to capture the atmosphere of the location.</p>
+        <a href="https://lakoubreda.com" class="project-link" target="_blank">lakoubreda.com</a>
+        <div class="project-tags">
+          <span class="tag">Editorial</span><span class="tag">Photography</span>
+        </div>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label reveal">Get in Touch</p>
+  <div class="contact-grid">
+    <h2 class="contact-headline reveal">Let's<br>Build<br><em>Something.</em></h2>
+    <div class="contact-info reveal">
+      <div>
+        <p class="contact-line">Email</p>
+        <p class="contact-value"><a href="mailto:thysrany@gmail.com">thysrany@gmail.com</a></p>
+      </div>
+      <div>
+        <p class="contact-line">Phone</p>
+        <p class="contact-value"><a href="tel:7818088716">(781) 808-8716</a></p>
+      </div>
+      <div>
+        <p class="contact-line">Location</p>
+        <p class="contact-value">Malden, Massachusetts</p>
+      </div>
+      <div>
+        <p class="contact-line">Available for</p>
+        <p class="contact-value">Freelance &nbsp;·&nbsp; Contract &nbsp;·&nbsp; Remote</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Rany Thys</span>
+  <span class="footer-copy">© 2026</span>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
