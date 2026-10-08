@@ -146,32 +146,33 @@
     gap: 0;
     border-top: 1px solid #E0E0E0;
     overflow: hidden;
+    margin-bottom: 32px;
   }
-  .project-item:last-child { border-bottom: 1px solid #E0E0E0; }
+  .project-item:last-child { border-bottom: 1px solid #E0E0E0; margin-bottom: 0; }
 
   /* Alternate image left/right */
   .project-item:nth-child(even) .project-image-wrap { order: -1; }
 
   .project-text {
-    padding: clamp(40px, 5vw, 72px) clamp(32px, 4vw, 64px);
+    padding: clamp(48px, 6vw, 88px) clamp(32px, 4vw, 64px);
     display: flex; flex-direction: column; justify-content: center;
-    position: relative; z-index: 1;
+    position: relative;
+    overflow: hidden;
   }
+  /* Ghost number sits behind the text in the text panel */
   .project-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(100px, 12vw, 160px); line-height: 1;
-    color: rgba(255,255,255,0.35);
-    position: absolute; bottom: 0; right: 16px;
+    font-size: clamp(120px, 16vw, 200px); line-height: 0.85;
+    color: #F0F0F0;
+    position: absolute; bottom: -16px; left: 50%;
+    transform: translateX(-50%);
     pointer-events: none;
-    z-index: 2;
-    letter-spacing: -4px;
-    mix-blend-mode: overlay;
+    z-index: 0;
+    letter-spacing: -6px;
+    white-space: nowrap;
   }
-  .project-item:nth-child(even) .project-num { right: auto; left: 16px; }
-  .project-image-wrap.no-image .project-num {
-    color: rgba(0,0,0,0.12);
-    mix-blend-mode: normal;
-  }
+  /* All text content sits above the ghost number */
+  .project-text > *:not(.project-num) { position: relative; z-index: 1; }
 
   .project-type {
     font-size: 11px; font-weight: 600; color: var(--red);
@@ -250,10 +251,24 @@
   }
 
   @media (max-width: 800px) {
-    .project-item { grid-template-columns: 1fr; }
-    .project-item:nth-child(even) .project-image-wrap { order: 0; }
-    .project-image-wrap { aspect-ratio: 16/9; }
-    .project-num { font-size: clamp(60px, 14vw, 96px); bottom: 8px; right: 16px; }
+    /* Stack image on top, text below, full width */
+    .project-item {
+      grid-template-columns: 1fr;
+      margin-bottom: 16px;
+    }
+    /* Always: image first (top), text second (bottom) */
+    .project-image-wrap { order: -1 !important; aspect-ratio: 16/9; min-height: 0; }
+    .project-text { padding: 32px 24px; }
+    /* Ghost number smaller and stays contained */
+    .project-num {
+      font-size: 96px;
+      bottom: -10px;
+      right: 12px;
+    }
+    .project-item:nth-child(even) .project-num { left: 12px; right: auto; }
+    /* Tags wrap properly */
+    .project-tags { flex-wrap: wrap; }
+    .tag { font-size: 11px; }
   }
 
   /* ── CONTACT ── */
@@ -361,151 +376,133 @@
   <div class="projects-list">
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">01</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Interpreter Scheduling Platform</h3>
         <p class="project-desc">Scheduling and management platform for interpreter services. Secure login, protected routing, and mobile-responsive appointment management across multiple user types.</p>
         <div class="project-links"><a href="https://scheduleint.com" class="project-link" target="_blank">scheduleint.com</a></div>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Scheduling</span><span class="tag">Secure Login</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Scheduling</span><span class="tag">Secure Login</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">01</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Schedule%20INT.jpg" alt="Interpreter Scheduling Platform screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
       <div class="project-text reveal">
+        <span class="project-num">02</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Catering Cost Control App</h3>
         <p class="project-desc">Web application for a catering operation covering inventory management, recipe costing, invoicing, and reporting. Deployed to production with a custom domain.</p>
         <div class="project-tags"><span class="tag">Web App</span><span class="tag">Inventory</span><span class="tag">Invoicing</span></div>
       </div>
-      <div class="project-image-wrap no-image" data-label="Private App">
-        <span class="project-num">02</span>
-      </div>
+      <div class="project-image-wrap no-image" data-label="Private App"></div>
     </div>
 
     <div class="project-item">
       <div class="project-text reveal">
+        <span class="project-num">03</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Bar Association Platform</h3>
         <p class="project-desc">Official platform for the Barreau de Port-au-Prince, founded in 1859. Includes a public-facing site, member portal with secure login, and an online membership application flow.</p>
         <div class="project-links"><a href="https://www.barreaudeportauprince.com" class="project-link" target="_blank">barreaudeportauprince.com</a></div>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Secure Login</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Secure Login</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">03</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Barreau%20de%20Port-au-Prince.jpg" alt="Bar Association Platform screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">04</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Professional Linguists Association</h3>
         <p class="project-desc">Global membership platform for the Haitian Association of Interpreters and Translators International. Includes a professional registry, membership application, member portal, and a client-facing interpreter request flow.</p>
         <div class="project-links"><a href="https://www.haitinet.org" class="project-link" target="_blank">haitinet.org</a></div>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Registry</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Registry</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">04</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Haitinet.jpg" alt="Professional Linguists Association screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
       <div class="project-text reveal">
+        <span class="project-num">05</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Personal Finance App</h3>
         <p class="project-desc">Personal finance application with dynamic budget categories, income goal tracking, opening and closing balances, and a collapsible budget system.</p>
         <div class="project-tags"><span class="tag">Web App</span><span class="tag">Finance</span><span class="tag">Dashboard</span></div>
       </div>
-      <div class="project-image-wrap no-image" data-label="Private App">
-        <span class="project-num">05</span>
-      </div>
+      <div class="project-image-wrap no-image" data-label="Private App"></div>
     </div>
 
     <div class="project-item">
       <div class="project-text reveal">
+        <span class="project-num">06</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Ebook &amp; Digital Course Sites</h3>
         <p class="project-desc">E-commerce site built for a sales and marketing training company offering books and courses in French, English, and Haitian Creole. Features clean checkout experience and digital product listings.</p>
         <div class="project-links"><a href="https://www.lpfconseils.com" class="project-link" target="_blank">lpfconseils.com</a></div>
-        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Ebooks</span><span class="tag">Courses</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Ebooks</span><span class="tag">Courses</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">06</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/LPF%20Conseils.jpg" alt="Ebook & Digital Course Sites screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">07</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Cybersecurity Company</h3>
         <p class="project-desc">Conversion-focused landing page with an animated fiber optic hero header, free assessment tool, service packages, and clear calls to action.</p>
         <div class="project-links"><a href="https://www.tainoshield.com" class="project-link" target="_blank">tainoshield.com</a></div>
-        <div class="project-tags"><span class="tag">Landing Page</span><span class="tag">Animation</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Landing Page</span><span class="tag">Animation</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">07</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Taino%20Shield.jpg" alt="Cybersecurity Company screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">08</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Martial Arts School</h3>
         <p class="project-desc">Multi-page site for a traditional Aikido and Karate school in Haiti. Features course programs for children and adults, a photo gallery, event listings, a contact form, and class scheduling — built in French with a spirit true to the Japanese martial tradition.</p>
         <div class="project-links"><a href="https://www.mushindojo.net" class="project-link" target="_blank">mushindojo.net</a></div>
-        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">French</span><span class="tag">Contact Form</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">French</span><span class="tag">Contact Form</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">08</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Mushin%20Dojo.jpg" alt="Martial Arts School screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">09</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Cultural Education Platform</h3>
         <p class="project-desc">Membership and course site for a cultural educator offering online courses and books in Haitian Creole. Includes course pages, member login, and e-commerce checkout.</p>
         <div class="project-links"><a href="https://bilolokongo.com" class="project-link" target="_blank">bilolokongo.com</a></div>
-        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Membership</span><span class="tag">Haitian Creole</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Membership</span><span class="tag">Haitian Creole</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">09</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Bilolo%20Kongo.jpg" alt="Cultural Education Platform screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">10</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Community Health Foundation</h3>
         <p class="project-desc">Full website rebuild with scroll animations, real photo integration, a custom content management panel, and complete deployment setup.</p>
         <div class="project-links"><a href="https://neriahcommunityhealth.org" class="project-link" target="_blank">neriahcommunityhealth.org</a></div>
-        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">Nonprofit</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">Nonprofit</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">10</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Neriah%20Community%20Health.jpg" alt="Community Health Foundation screenshot" class="project-thumb">
       </div>
     </div>
 
     <div class="project-item">
-      <div class="project-text reveal">
+      <div class="project-text reveal"><span class="project-num">11</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Eco-Resort</h3>
         <p class="project-desc">Editorial-style site for a Cap-Haïtien eco-resort. Real photography and an immersive layout built to capture the atmosphere of the location.</p>
         <div class="project-links"><a href="https://lakoubreda.com" class="project-link" target="_blank">lakoubreda.com</a></div>
-        <div class="project-tags"><span class="tag">Editorial</span><span class="tag">Photography</span></div>
-      </div>
+        <div class="project-tags"><span class="tag">Editorial</span><span class="tag">Photography</span></div></div>
       <div class="project-image-wrap">
-        <span class="project-num">11</span>
         <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Lakou%20Breda.jpg" alt="Eco-Resort screenshot" class="project-thumb">
       </div>
     </div>
