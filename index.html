@@ -136,74 +136,119 @@
     padding: 12px 0; border-top: 1px solid #D8D8D8;
   }
 
-  /* ── PROJECT IMAGES ── */
-  .project-thumb {
-    width: 220px;
-    min-width: 220px;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top;
-    border: 1px solid #E8E8E8;
-    display: block;
-    align-self: flex-start;
-    margin-top: 6px;
-    transition: opacity 0.2s;
-  }
-  .project-item:hover .project-thumb { opacity: 0.85; }
-  @media (max-width: 900px) { .project-thumb { display: none; } }
-
   /* ── PROJECTS ── */
   .projects-list { display: flex; flex-direction: column; }
 
   .project-item {
     display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 32px; align-items: start;
-    padding: 40px 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
     border-top: 1px solid #E0E0E0;
-    cursor: default;
-    transition: background 0.2s;
+    overflow: hidden;
+    position: relative;
   }
   .project-item:last-child { border-bottom: 1px solid #E0E0E0; }
-  .project-item:hover { background: var(--gray); padding-left: 16px; padding-right: 16px; margin: 0 -16px; }
 
+  /* Alternate image left/right */
+  .project-item:nth-child(even) .project-image-wrap { order: -1; }
+
+  .project-text {
+    padding: clamp(40px, 5vw, 72px) clamp(32px, 4vw, 64px);
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 1;
+  }
   .project-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px; line-height: 1;
-    color: #D8D8D8;
-    padding-top: 4px;
+    font-size: 96px; line-height: 1;
+    color: #EBEBEB;
+    position: absolute; top: 24px; right: 32px;
+    pointer-events: none;
   }
-  .project-content { flex: 1; }
+  .project-item:nth-child(even) .project-num { right: auto; left: 32px; }
+
   .project-type {
     font-size: 11px; font-weight: 600; color: var(--red);
-    letter-spacing: 1.5px; margin-bottom: 8px;
+    letter-spacing: 1.5px; margin-bottom: 10px;
+    text-transform: uppercase;
   }
   .project-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(28px, 4vw, 48px);
-    line-height: 1; color: var(--black); margin-bottom: 12px;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1; color: var(--black); margin-bottom: 16px;
   }
-  .project-desc { font-size: 15px; font-weight: 300; color: #555; line-height: 1.6; max-width: 560px; }
+  .project-desc {
+    font-size: 15px; font-weight: 300; color: #555;
+    line-height: 1.7; max-width: 420px;
+  }
+  .project-links { margin-top: 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
   .project-link {
-    display: inline-block; margin-top: 12px;
-    font-size: 12px; font-weight: 500; color: var(--mid);
-    text-decoration: none; letter-spacing: 0.3px;
-    border-bottom: 1px solid #D0D0D0;
-    transition: color 0.2s, border-color 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500; color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
   }
   .project-link:hover { color: var(--red); border-color: var(--red); }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .tag {
     font-size: 11px; font-weight: 500;
-    border: 1px solid #D0D0D0; color: #555;
-    padding: 4px 10px;
+    border: 1px solid #D0D0D0; color: #777;
+    padding: 4px 12px;
+    letter-spacing: 0.3px;
   }
-  .project-arrow {
-    font-size: 32px; color: #D0D0D0;
-    align-self: center;
-    transition: color 0.2s, transform 0.2s;
+
+  /* Image wrapper */
+  .project-image-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: #F0F0F0;
   }
-  .project-item:hover .project-arrow { color: var(--red); transform: translateX(4px); }
+  .project-thumb {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .project-item:hover .project-thumb { transform: scale(1.05); }
+
+  /* Image reveal on scroll */
+  .project-image-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--white);
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+  }
+  .project-item:nth-child(even) .project-image-wrap::after { transform-origin: right; }
+  .project-image-wrap.revealed::after { transform: scaleX(0); }
+
+  /* No image placeholder */
+  .project-image-wrap.no-image {
+    background: var(--gray);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-image-wrap.no-image::before {
+    content: attr(data-label);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 3vw, 40px);
+    color: #D0D0D0;
+    text-align: center;
+    padding: 32px;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 800px) {
+    .project-item { grid-template-columns: 1fr; }
+    .project-item:nth-child(even) .project-image-wrap { order: 0; }
+    .project-image-wrap { aspect-ratio: 16/9; }
+    .project-num { font-size: 64px; top: 16px; right: 16px; }
+    .project-item:nth-child(even) .project-num { left: 16px; }
+  }
 
   /* ── CONTACT ── */
   .contact { background: var(--black); color: var(--white); }
@@ -309,174 +354,152 @@
   <p class="section-label reveal">Selected Work</p>
   <div class="projects-list">
 
-    <div class="project-item reveal">
-      <span class="project-num">01</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">01</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Interpreter Scheduling Platform</h3>
         <p class="project-desc">Scheduling and management platform for interpreter services. Secure login, protected routing, and mobile-responsive appointment management across multiple user types.</p>
-        <a href="https://scheduleint.com" class="project-link" target="_blank">scheduleint.com</a>
-        <div class="project-tags">
-          <span class="tag">Web App</span><span class="tag">Scheduling</span><span class="tag">Secure Login</span>
-        </div>
+        <div class="project-links"><a href="https://scheduleint.com" class="project-link" target="_blank">scheduleint.com</a></div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Scheduling</span><span class="tag">Secure Login</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Schedule%20INT.jpg" alt="Interpreter Scheduling Platform screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Schedule%20INT.jpg" alt="Interpreter Scheduling Platform screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">02</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">02</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Catering Cost Control App</h3>
         <p class="project-desc">Web application for a catering operation covering inventory management, recipe costing, invoicing, and reporting. Deployed to production with a custom domain.</p>
-        <div class="project-tags">
-          <span class="tag">Web App</span><span class="tag">Inventory</span><span class="tag">Invoicing</span>
-        </div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Inventory</span><span class="tag">Invoicing</span></div>
       </div>
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap no-image" data-label="Private App"></div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">03</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">03</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Bar Association Platform</h3>
         <p class="project-desc">Official platform for the Barreau de Port-au-Prince, founded in 1859. Includes a public-facing site, member portal with secure login, and an online membership application flow.</p>
-        <a href="https://www.barreaudeportauprince.com" class="project-link" target="_blank">barreaudeportauprince.com</a>
-        <div class="project-tags">
-          <span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Secure Login</span>
-        </div>
+        <div class="project-links"><a href="https://www.barreaudeportauprince.com" class="project-link" target="_blank">barreaudeportauprince.com</a></div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Secure Login</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Barreau%20de%20Port-au-Prince.jpg" alt="Bar Association Platform screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Barreau%20de%20Port-au-Prince.jpg" alt="Bar Association Platform screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">04</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">04</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Professional Linguists Association</h3>
         <p class="project-desc">Global membership platform for the Haitian Association of Interpreters and Translators International. Includes a professional registry, membership application, member portal, and a client-facing interpreter request flow.</p>
-        <a href="https://www.haitinet.org" class="project-link" target="_blank">haitinet.org</a>
-        <div class="project-tags">
-          <span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Registry</span>
-        </div>
+        <div class="project-links"><a href="https://www.haitinet.org" class="project-link" target="_blank">haitinet.org</a></div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Registry</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Haitinet.jpg" alt="Professional Linguists Association screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Haitinet.jpg" alt="Professional Linguists Association screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">05</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">05</span>
         <p class="project-type">Web Application</p>
         <h3 class="project-title">Personal Finance App</h3>
         <p class="project-desc">Personal finance application with dynamic budget categories, income goal tracking, opening and closing balances, and a collapsible budget system.</p>
-        <div class="project-tags">
-          <span class="tag">Web App</span><span class="tag">Finance</span><span class="tag">Dashboard</span>
-        </div>
+        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Finance</span><span class="tag">Dashboard</span></div>
       </div>
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap no-image" data-label="Private App"></div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">06</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">06</span>
         <p class="project-type">Website</p>
-        <h3 class="project-title">Ebook & Digital Course Sites</h3>
+        <h3 class="project-title">Ebook &amp; Digital Course Sites</h3>
         <p class="project-desc">E-commerce site built for a sales and marketing training company offering books and courses in French, English, and Haitian Creole. Features clean checkout experience and digital product listings.</p>
-        <a href="https://www.lpfconseils.com" class="project-link" target="_blank">lpfconseils.com</a>
-        <div class="project-tags">
-          <span class="tag">E-commerce</span><span class="tag">Ebooks</span><span class="tag">Courses</span>
-        </div>
+        <div class="project-links"><a href="https://www.lpfconseils.com" class="project-link" target="_blank">lpfconseils.com</a></div>
+        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Ebooks</span><span class="tag">Courses</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/LPF%20Conseils.jpg" alt="Ebook & Digital Course Sites screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/LPF%20Conseils.jpg" alt="Ebook & Digital Course Sites screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">07</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">07</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Cybersecurity Company</h3>
         <p class="project-desc">Conversion-focused landing page with an animated fiber optic hero header, free assessment tool, service packages, and clear calls to action.</p>
-        <a href="https://www.tainoshield.com" class="project-link" target="_blank">tainoshield.com</a>
-        <div class="project-tags">
-          <span class="tag">Landing Page</span><span class="tag">Animation</span>
-        </div>
+        <div class="project-links"><a href="https://www.tainoshield.com" class="project-link" target="_blank">tainoshield.com</a></div>
+        <div class="project-tags"><span class="tag">Landing Page</span><span class="tag">Animation</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Taino%20Shield.jpg" alt="Cybersecurity Company screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Taino%20Shield.jpg" alt="Cybersecurity Company screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">08</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">08</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Martial Arts School</h3>
         <p class="project-desc">Multi-page site for a traditional Aikido and Karate school in Haiti. Features course programs for children and adults, a photo gallery, event listings, a contact form, and class scheduling — built in French with a spirit true to the Japanese martial tradition.</p>
-        <a href="https://www.mushindojo.net" class="project-link" target="_blank">mushindojo.net</a>
-        <div class="project-tags">
-          <span class="tag">Multi-page</span><span class="tag">French</span><span class="tag">Contact Form</span>
-        </div>
+        <div class="project-links"><a href="https://www.mushindojo.net" class="project-link" target="_blank">mushindojo.net</a></div>
+        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">French</span><span class="tag">Contact Form</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Mushin%20Dojo.jpg" alt="Martial Arts School screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Mushin%20Dojo.jpg" alt="Martial Arts School screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">09</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">09</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Cultural Education Platform</h3>
         <p class="project-desc">Membership and course site for a cultural educator offering online courses and books in Haitian Creole. Includes course pages, member login, and e-commerce checkout.</p>
-        <a href="https://bilolokongo.com" class="project-link" target="_blank">bilolokongo.com</a>
-        <div class="project-tags">
-          <span class="tag">E-commerce</span><span class="tag">Membership</span><span class="tag">Haitian Creole</span>
-        </div>
+        <div class="project-links"><a href="https://bilolokongo.com" class="project-link" target="_blank">bilolokongo.com</a></div>
+        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Membership</span><span class="tag">Haitian Creole</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Bilolo%20Kongo.jpg" alt="Cultural Education Platform screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Bilolo%20Kongo.jpg" alt="Cultural Education Platform screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">10</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">10</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Community Health Foundation</h3>
         <p class="project-desc">Full website rebuild with scroll animations, real photo integration, a custom content management panel, and complete deployment setup.</p>
-        <a href="https://neriahcommunityhealth.org" class="project-link" target="_blank">neriahcommunityhealth.org</a>
-        <div class="project-tags">
-          <span class="tag">Multi-page</span><span class="tag">Nonprofit</span>
-        </div>
+        <div class="project-links"><a href="https://neriahcommunityhealth.org" class="project-link" target="_blank">neriahcommunityhealth.org</a></div>
+        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">Nonprofit</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Neriah%20Community%20Health.jpg" alt="Community Health Foundation screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Neriah%20Community%20Health.jpg" alt="Community Health Foundation screenshot" class="project-thumb">
+      </div>
     </div>
 
-    <div class="project-item reveal">
-      <span class="project-num">11</span>
-      <div class="project-content">
+    <div class="project-item">
+      <div class="project-text reveal">
+        <span class="project-num">11</span>
         <p class="project-type">Website</p>
         <h3 class="project-title">Eco-Resort</h3>
         <p class="project-desc">Editorial-style site for a Cap-Haïtien eco-resort. Real photography and an immersive layout built to capture the atmosphere of the location.</p>
-        <a href="https://lakoubreda.com" class="project-link" target="_blank">lakoubreda.com</a>
-        <div class="project-tags">
-          <span class="tag">Editorial</span><span class="tag">Photography</span>
-        </div>
+        <div class="project-links"><a href="https://lakoubreda.com" class="project-link" target="_blank">lakoubreda.com</a></div>
+        <div class="project-tags"><span class="tag">Editorial</span><span class="tag">Photography</span></div>
       </div>
-      
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Lakou%20Breda.jpg" alt="Eco-Resort screenshot" class="project-thumb">
-      <span class="project-arrow">→</span>
+      <div class="project-image-wrap">
+        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Lakou%20Breda.jpg" alt="Eco-Resort screenshot" class="project-thumb">
+      </div>
     </div>
 
   </div>
@@ -537,6 +560,25 @@
   reveals.forEach(el => {
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight) el.classList.add('visible');
+  });
+
+  // Image wipe-in reveal for project images
+  const imageWraps = document.querySelectorAll('.project-image-wrap:not(.no-image)');
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('revealed'), 100);
+        imageObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  imageWraps.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('revealed');
+    } else {
+      imageObserver.observe(el);
+    }
   });
 </script>
 </body>
