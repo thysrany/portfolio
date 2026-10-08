@@ -272,7 +272,12 @@
   }
 
   @media (max-width: 800px) {
-    .hero-photo-wrap { display: none; }
+    .hero-bottom { flex-direction: column-reverse; align-items: flex-start; gap: 0; }
+    .hero-photo-wrap {
+      width: clamp(140px, 40vw, 200px);
+      padding-top: 72px;
+      align-self: flex-end;
+    }
     .project-item {
       display: flex !important;
       flex-direction: column !important;
@@ -376,7 +381,7 @@
       <p class="hero-tagline">I build web applications and websites that work — from concept to deployment. Landing pages, full-stack apps, and everything between.</p>
     </div>
     <div class="hero-photo-wrap">
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/RANY%20THYS%20clean.png" alt="Rany Thys" class="hero-photo">
+      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Rany%20Thys%20Green.png" alt="Rany Thys" class="hero-photo">
     </div>
   </div>
   <span class="hero-scroll">Scroll</span>
