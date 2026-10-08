@@ -58,10 +58,14 @@
   }
 
   .hero-eyebrow {
-    font-size: 13px; font-weight: 600; color: var(--black);
-    letter-spacing: 1.5px; margin-bottom: 16px;
-    opacity: 1;
+    font-size: 13px; font-weight: 700; color: #0A0A0A !important;
+    letter-spacing: 2px; margin-bottom: 20px;
+    opacity: 1 !important;
     text-transform: uppercase;
+    display: block;
+    visibility: visible !important;
+    position: relative;
+    z-index: 2;
   }
 
   .hero-name {
@@ -321,8 +325,6 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 720px) {
     .about-grid { grid-template-columns: 1fr; }
-    .project-item { grid-template-columns: 48px 1fr; }
-    .project-arrow { display: none; }
     .contact-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
