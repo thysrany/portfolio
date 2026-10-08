@@ -251,22 +251,31 @@
   }
 
   @media (max-width: 800px) {
-    /* Stack image on top, text below, full width */
     .project-item {
-      grid-template-columns: 1fr;
+      display: flex !important;
+      flex-direction: column !important;
       margin-bottom: 16px;
     }
-    /* Always: image first (top), text second (bottom) */
-    .project-image-wrap { order: -1 !important; aspect-ratio: 16/9; min-height: 0; }
-    .project-text { padding: 32px 24px; }
-    /* Ghost number smaller and stays contained */
-    .project-num {
-      font-size: 96px;
-      bottom: -10px;
-      right: 12px;
+    .project-image-wrap {
+      order: -1 !important;
+      width: 100% !important;
+      min-height: 0 !important;
+      height: 220px !important;
+      flex-shrink: 0;
     }
-    .project-item:nth-child(even) .project-num { left: 12px; right: auto; }
-    /* Tags wrap properly */
+    .project-image-wrap .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .project-text { padding: 32px 24px; }
+    .project-num {
+      font-size: 80px;
+      bottom: -8px;
+      right: 8px;
+      left: auto;
+    }
+    .project-item:nth-child(even) .project-num { left: 8px; right: auto; }
     .project-tags { flex-wrap: wrap; }
     .tag { font-size: 11px; }
   }
