@@ -42,10 +42,9 @@
     letter-spacing: 2px;
     color: var(--black);
     text-decoration: none;
-    opacity: 0;
-    animation: fadeIn 0.6s 1.8s forwards;
+    opacity: 1;
   }
-  .nav-links { display: flex; gap: 32px; list-style: none; opacity: 0; animation: fadeIn 0.6s 1.8s forwards; }
+  .nav-links { display: flex; gap: 32px; list-style: none; opacity: 1; }
   .nav-links a { font-size: 13px; font-weight: 500; color: var(--black); text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
   .nav-links a:hover { color: var(--red); }
 
@@ -61,7 +60,7 @@
   .hero-eyebrow {
     font-size: 13px; font-weight: 500; color: var(--mid);
     letter-spacing: 1px; margin-bottom: 16px;
-    opacity: 0; animation: fadeIn 0.5s 0.3s forwards;
+    opacity: 1;
   }
 
   .hero-name {
@@ -90,14 +89,14 @@
     font-size: clamp(15px, 2vw, 20px);
     font-weight: 300; color: var(--black);
     max-width: 520px; line-height: 1.5;
-    opacity: 0; animation: fadeIn 0.7s 1.4s forwards;
+    opacity: 1;
   }
 
   .hero-scroll {
     position: absolute; bottom: clamp(24px, 4vh, 48px); right: var(--pad);
     display: flex; align-items: center; gap: 12px;
     font-size: 11px; font-weight: 500; color: var(--mid); letter-spacing: 1px;
-    opacity: 0; animation: fadeIn 0.6s 2s forwards;
+    opacity: 1;
     writing-mode: vertical-rl;
   }
   .hero-scroll::before {
@@ -237,11 +236,12 @@
   @keyframes slideUp { to { transform: translateY(0); } }
   @keyframes expandRule { to { width: clamp(80px, 12vw, 160px); } }
 
-  .reveal {
+  .js-ready .reveal {
     opacity: 0; transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
+
 
   /* ── RESPONSIVE ── */
   @media (max-width: 720px) {
@@ -520,17 +520,24 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // Scroll reveal
+  // Scroll reveal — only activate if JS runs successfully
+  document.documentElement.classList.add('js-ready');
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
   reveals.forEach(el => observer.observe(el));
+
+  // Immediately reveal anything already in viewport
+  reveals.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('visible');
+  });
 </script>
 </body>
 </html>
