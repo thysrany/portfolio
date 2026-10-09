@@ -94,12 +94,20 @@
   }
 
   .hero-bottom {
+    display: block;
+  }
+  .hero-left { width: 100%; }
+
+  /* desktop: name-row = name on left, photo on right */
+  .hero-name-row {
     display: flex;
+    flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
     gap: 40px;
+    margin-bottom: 0;
   }
-  .hero-left { flex: 1; min-width: 0; }
+  .hero-name-col { flex: 1; min-width: 0; }
 
   @keyframes photoSlideUp {
     from { opacity: 0; transform: translateY(40px); }
@@ -109,7 +117,6 @@
   .hero-photo-wrap {
     flex-shrink: 0;
     width: clamp(380px, 44vw, 620px);
-    align-self: flex-end;
     position: relative;
     padding-top: 72px;
     opacity: 0;
@@ -280,13 +287,28 @@
 
   @media (max-width: 800px) {
     .hero { min-height: 0; padding-top: 100px; padding-bottom: 48px; }
-    .hero-bottom { flex-direction: row; align-items: flex-start; gap: 12px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 0; }
+    /* on mobile: name-row becomes a real flex row with photo beside name */
+    .hero-name-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+    }
+    .hero-name-col { flex: 1; min-width: 0; }
     .hero-photo-wrap {
-      width: 38vw;
+      width: 36vw;
       padding-top: 0 !important;
       flex-shrink: 0;
       align-self: flex-start;
     }
+    .hero-photo {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hero-tagline { font-size: 15px; line-height: 1.55; max-width: 100%; }
     .project-item {
       display: flex !important;
       flex-direction: column !important;
@@ -381,16 +403,20 @@
 <section class="hero">
   <div class="hero-bottom">
     <div class="hero-left">
-      <h1 class="hero-name">
-        <span>RANY</span>
-        <span>THYS</span>
-      </h1>
+      <div class="hero-name-row">
+        <div class="hero-name-col">
+          <h1 class="hero-name">
+            <span>RANY</span>
+            <span>THYS</span>
+          </h1>
+        </div>
+        <div class="hero-photo-wrap">
+          <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Rany%20Thys%20Green.png" alt="Rany Thys" class="hero-photo">
+        </div>
+      </div>
       <p class="hero-eyebrow">Full-Stack Developer &nbsp;/&nbsp; Malden, MA</p>
       <div class="hero-rule"></div>
       <p class="hero-tagline">I build web applications and websites that work — from concept to deployment. Landing pages, full-stack apps, and everything between.</p>
-    </div>
-    <div class="hero-photo-wrap">
-      <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Rany%20Thys%20Green.png" alt="Rany Thys" class="hero-photo">
     </div>
   </div>
   <span class="hero-scroll">Scroll</span>
