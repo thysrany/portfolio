@@ -111,7 +111,7 @@
     width: clamp(380px, 44vw, 620px);
     align-self: flex-end;
     position: relative;
-    padding-top: 80px;
+    padding-top: 72px;
     opacity: 0;
     animation: photoSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
   }
@@ -279,11 +279,11 @@
   }
 
   @media (max-width: 800px) {
-    .hero-bottom { flex-direction: column-reverse; align-items: flex-start; gap: 0; }
+    .hero-bottom { flex-direction: row; align-items: flex-end; gap: 16px; }
     .hero-photo-wrap {
-      width: clamp(200px, 55vw, 320px);
-      padding-top: 72px;
-      align-self: flex-end;
+      width: 42vw;
+      padding-top: 0;
+      flex-shrink: 0;
     }
     .project-item {
       display: flex !important;
