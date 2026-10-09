@@ -172,6 +172,54 @@
     padding: 12px 0; border-top: 1px solid #D8D8D8;
   }
 
+  /* ── SERVICES ── */
+  .services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 0;
+    border-top: 1px solid #E0E0E0;
+  }
+  .service-item {
+    padding: 40px 0 40px;
+    border-bottom: 1px solid #E0E0E0;
+    border-right: 1px solid #E0E0E0;
+  }
+  .service-item:nth-child(3n) { border-right: none; }
+  .service-item { padding-right: 32px; }
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--red);
+    display: block;
+    margin-bottom: 16px;
+  }
+  .service-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 2.5vw, 32px);
+    line-height: 1;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .service-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 800px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .service-item:nth-child(3n) { border-right: 1px solid #E0E0E0; }
+    .service-item:nth-child(2n) { border-right: none; }
+  }
+  @media (max-width: 500px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-item { border-right: none !important; padding-right: 0; }
+  }
+
   /* ── PROJECTS ── */
   .projects-list { display: flex; flex-direction: column; }
 
@@ -364,6 +412,44 @@
   .footer-name { font-size: 13px; font-weight: 500; color: var(--mid); }
   .footer-copy { font-size: 12px; color: #BBBBBB; }
 
+  /* ── TICKER ── */
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--black);
+    padding: 18px 0;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 22s linear infinite;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+    padding-right: 0;
+  }
+  .ticker-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(15px, 1.8vw, 20px);
+    letter-spacing: 2px;
+    color: var(--white);
+    padding: 0 28px;
+  }
+  .ticker-dot {
+    color: var(--red);
+    font-size: 20px;
+    line-height: 1;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { to { transform: translateY(0); } }
@@ -421,6 +507,28 @@
   </div>
   <span class="hero-scroll">Scroll</span>
 </section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- set 1 -->
+    <div class="ticker-item"><span class="ticker-text">Web Development</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Branding &amp; Identity</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Logo Design</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Digital Marketing</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Landing Pages</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Full-Stack Apps</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">E-Commerce</span><span class="ticker-dot">✦</span></div>
+    <!-- set 2 (duplicate for seamless loop) -->
+    <div class="ticker-item"><span class="ticker-text">Web Development</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Branding &amp; Identity</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Logo Design</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Digital Marketing</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Landing Pages</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">Full-Stack Apps</span><span class="ticker-dot">✦</span></div>
+    <div class="ticker-item"><span class="ticker-text">E-Commerce</span><span class="ticker-dot">✦</span></div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
