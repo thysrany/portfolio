@@ -129,14 +129,6 @@
     position: relative;
     z-index: 1;
   }
-  .hero-abstract {
-    position: absolute;
-    top: 10%; left: -5%;
-    width: 110%; height: 80%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: visible;
-  }
 
   .hero-scroll {
     position: absolute; bottom: clamp(24px, 4vh, 48px); right: var(--pad);
@@ -507,47 +499,6 @@
           </h1>
         </div>
         <div class="hero-photo-wrap">
-          <svg class="hero-abstract" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <!-- main horizontal brush body with rough edges -->
-            <path d="
-              M 10 80
-              C 40 60, 100 55, 160 58
-              C 220 60, 300 52, 380 56
-              C 450 60, 520 62, 580 70
-              C 598 73, 600 90, 598 110
-              C 596 130, 580 145, 560 150
-              C 520 158, 460 162, 400 160
-              C 340 158, 260 165, 190 162
-              C 130 160, 60 158, 20 148
-              C 5 144, 0 130, 2 110
-              C 4 95, 8 84, 10 80 Z
-            " fill="var(--red)"/>
-            <!-- top bristle streaks left -->
-            <path d="M 15 75 C 10 55, 6 38, 18 22 C 12 36, 8 54, 15 75 Z" fill="var(--red)"/>
-            <path d="M 40 62 C 36 42, 34 24, 48 10 C 40 24, 38 44, 40 62 Z" fill="var(--red)"/>
-            <path d="M 70 58 C 68 36, 68 18, 82 5 C 74 18, 72 38, 70 58 Z" fill="var(--red)"/>
-            <path d="M 100 55 C 100 34, 102 16, 116 4 C 108 16, 104 36, 100 55 Z" fill="var(--red)"/>
-            <path d="M 135 54 C 137 32, 140 14, 155 3 C 145 15, 140 34, 135 54 Z" fill="var(--red)"/>
-            <!-- top bristle streaks right -->
-            <path d="M 420 55 C 424 33, 428 14, 444 2 C 434 15, 428 34, 420 55 Z" fill="var(--red)"/>
-            <path d="M 470 58 C 476 36, 482 17, 498 5 C 486 18, 478 38, 470 58 Z" fill="var(--red)"/>
-            <path d="M 520 62 C 528 40, 536 20, 554 8 C 540 22, 530 42, 520 62 Z" fill="var(--red)"/>
-            <path d="M 558 68 C 568 46, 576 26, 594 14 C 578 28, 566 48, 558 68 Z" fill="var(--red)"/>
-            <!-- bottom bristle streaks left -->
-            <path d="M 25 148 C 20 168, 16 188, 28 204 C 20 190, 18 170, 25 148 Z" fill="var(--red)"/>
-            <path d="M 60 156 C 56 178, 54 198, 68 212 C 58 198, 56 178, 60 156 Z" fill="var(--red)"/>
-            <path d="M 100 160 C 98 182, 98 202, 112 216 C 102 202, 100 182, 100 160 Z" fill="var(--red)"/>
-            <path d="M 145 162 C 145 184, 146 204, 162 218 C 150 204, 146 184, 145 162 Z" fill="var(--red)"/>
-            <!-- bottom bristle streaks right -->
-            <path d="M 400 160 C 402 182, 406 202, 422 214 C 410 200, 404 180, 400 160 Z" fill="var(--red)"/>
-            <path d="M 450 160 C 454 182, 460 202, 476 214 C 462 200, 454 180, 450 160 Z" fill="var(--red)"/>
-            <path d="M 500 158 C 506 180, 514 200, 530 212 C 514 198, 506 178, 500 158 Z" fill="var(--red)"/>
-            <path d="M 548 152 C 556 174, 564 194, 580 206 C 564 192, 554 172, 548 152 Z" fill="var(--red)"/>
-            <!-- inner texture streaks -->
-            <path d="M 20 90 C 150 82, 320 86, 590 92 L 590 96 C 320 90, 150 86, 20 94 Z" fill="white" opacity="0.08"/>
-            <path d="M 20 118 C 150 112, 320 116, 590 120 L 590 124 C 320 120, 150 116, 20 122 Z" fill="white" opacity="0.08"/>
-            <path d="M 20 138 C 150 132, 320 136, 580 140 L 580 144 C 320 140, 150 136, 20 142 Z" fill="white" opacity="0.06"/>
-          </svg>
           <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Rany%20Thys%20Green.png" alt="Rany Thys" class="hero-photo">
         </div>
       </div>
