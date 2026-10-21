@@ -105,7 +105,7 @@
     .hero .hero-rule { grid-column: 1; grid-row: 4; }
     .hero .hero-tagline { grid-column: 1; grid-row: 5; }
     .hero .hero-cta { grid-column: 1; grid-row: 6; }
-    .hero .hero-name { font-size: min(16vw, 23vh, 220px); }
+    .hero .hero-name { font-size: clamp(120px, min(17vw, calc((100vh - 400px) * 0.57)), 250px); }
     .hero .hero-photo-wrap { grid-column: 2; grid-row: 1 / -1; align-self: end; width: auto; padding-top: 0; }
     .hero .hero-photo { width: auto; height: auto; max-height: calc(100vh - 144px); max-width: 42vw; }
   }
@@ -716,7 +716,7 @@
   .contact { background: var(--black); color: var(--white); }
   .contact .section-label { color: var(--red); }
   .contact .section-label::after { background: #333; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: end; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
   .contact-headline {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(48px, 8vw, 100px);
@@ -724,6 +724,8 @@
   }
   .contact-headline em { color: var(--red); font-style: normal; }
   .contact-info { display: flex; flex-direction: column; gap: 32px; }
+  .contact-pitch { font-size: clamp(18px, 1.6vw, 22px); font-weight: 300; line-height: 1.55; color: var(--white); max-width: 36ch; margin-bottom: 16px; }
+  .contact-pitch strong { font-weight: 600; }
   .contact-line { font-size: 14px; font-weight: 300; color: #999; letter-spacing: 0.3px; }
   .contact-value { font-size: 18px; font-weight: 500; color: var(--white); margin-top: 4px; }
   .contact-value a { color: var(--white); text-decoration: none; border-bottom: 1px solid #444; transition: border-color 0.2s; }
@@ -2162,6 +2164,10 @@ async function cShowOffer(){chatOpts.innerHTML='';cShowTyping();await new Promis
   <div class="contact-grid">
     <h2 class="contact-headline reveal">Let's<br>Build<br><em>Something.</em></h2>
     <div class="contact-info reveal">
+      <div class="contact-intro">
+        <p class="contact-pitch"><strong>Have a project in mind?</strong> Tell me what you’re building, whether it’s a new website, a brand, or an app idea, and I’ll get back to you within 72&nbsp;hours.</p>
+        <p class="contact-line">I work in English, French, Spanish and Haitian Creole.</p>
+      </div>
       <div class="contact-btns">
         <a class="contact-btn" href="mailto:thysrany@gmail.com">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
