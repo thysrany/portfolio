@@ -286,9 +286,11 @@
 
 
   /* ── SELECTED WORK (price tiers) ── */
-  .wk-lede { font-size: 17px; font-weight: 300; color: #555; max-width: 40ch; line-height: 1.6; margin: -8px 0 clamp(40px, 6vw, 72px); }
-  .wk-tier { border-top: 1px solid var(--black); padding-top: clamp(24px, 3vw, 36px); margin-bottom: clamp(64px, 9vw, 112px); }
-  .wk-tier:last-child { margin-bottom: 0; }
+  section#projects { padding-left: 0; padding-right: 0; padding-bottom: 0; }
+  #projects > .section-label, #projects > .wk-lede { margin-left: var(--pad); margin-right: var(--pad); }
+  .wk-lede { font-size: 17px; font-weight: 300; color: #555; max-width: 40ch; line-height: 1.6; margin-top: -8px; margin-bottom: clamp(40px, 6vw, 72px); }
+  .wk-tier { padding: clamp(56px, 7vw, 96px) var(--pad); background: var(--white); }
+  .wk-tier:nth-of-type(odd) { background: var(--gray); }
   .wk-head { display: block; margin-bottom: clamp(24px, 3vw, 36px); }
   .wk-title { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(40px, 6vw, 80px); line-height: .9; color: var(--black); }
   .wk-blurb { font-size: 15px; font-weight: 300; color: #555; line-height: 1.6; margin-top: 12px; max-width: 46ch; }
