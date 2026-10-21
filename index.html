@@ -245,6 +245,58 @@
     .service-item { border-right: none !important; padding-right: 0; }
   }
 
+
+  /* ── SELECTED WORK (price tiers) ── */
+  .wk-lede { font-size: 17px; font-weight: 300; color: #555; max-width: 40ch; line-height: 1.6; margin: -8px 0 clamp(40px, 6vw, 72px); }
+  .wk-tier { border-top: 1px solid var(--black); padding-top: clamp(24px, 3vw, 36px); margin-bottom: clamp(64px, 9vw, 112px); }
+  .wk-tier:last-child { margin-bottom: 0; }
+  .wk-head { display: block; margin-bottom: clamp(24px, 3vw, 36px); }
+  .wk-title { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: clamp(40px, 6vw, 80px); line-height: .9; color: var(--black); }
+  .wk-blurb { font-size: 15px; font-weight: 300; color: #555; line-height: 1.6; margin-top: 12px; max-width: 46ch; }
+  .wk-price { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+  .wk-amount { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 7vw, 96px); line-height: .85; color: var(--red); white-space: nowrap; }
+  .wk-after { font-size: 13px; color: #555; margin-top: 8px; white-space: nowrap; }
+
+  .wk-rail { margin-right: calc(-1 * var(--pad)); }
+  .wk-track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 0; padding-right: var(--pad); scrollbar-width: none; -webkit-overflow-scrolling: touch; outline: none; }
+  .wk-track::-webkit-scrollbar { display: none; }
+  .wk-track:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+  .wk-card { flex: 0 0 clamp(280px, 38vw, 520px); scroll-snap-align: start; color: inherit; text-decoration: none; display: block; }
+  .wk-shot { aspect-ratio: 16 / 10; overflow: hidden; background: var(--gray); border: 1px solid #E0E0E0; }
+  .wk-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+  a.wk-card:hover .wk-shot img { transform: scale(1.03); }
+  a.wk-card:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+  .wk-name { font-size: 18px; font-weight: 600; color: var(--black); margin-top: 18px; line-height: 1.3; }
+  .wk-desc { font-size: 14px; font-weight: 300; color: #555; line-height: 1.55; margin-top: 6px; max-width: 48ch; }
+  .wk-domain { display: inline-block; font-size: 13px; font-weight: 500; color: var(--black); margin-top: 12px; border-bottom: 1px solid currentColor; padding-bottom: 1px; transition: color .2s; }
+  a.wk-card:hover .wk-domain { color: var(--red); }
+  .wk-domain.private { color: var(--mid); border-bottom: none; font-weight: 400; }
+
+  .wk-foot { display: flex; justify-content: flex-end; margin-top: 24px; }
+  .wk-tier.no-scroll .wk-foot { display: none; }
+  .wk-quote { font-size: 14px; font-weight: 600; color: var(--black); text-decoration: none; border-bottom: 2px solid var(--red); padding-bottom: 3px; }
+  .wk-quote:hover { color: var(--red); }
+  .wk-arrows { display: flex; gap: 8px; }
+  .wk-arrow { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid #D0D0D0; background: var(--white); color: var(--black); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+  .wk-arrow:hover:not(:disabled) { background: var(--black); color: var(--white); border-color: var(--black); }
+  .wk-arrow:disabled { opacity: .3; cursor: default; }
+  .wk-arrow:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .wk-tier.no-scroll .wk-arrows { visibility: hidden; }
+
+  @media (max-width: 800px) {
+    .wk-head { grid-template-columns: 1fr; gap: 16px; }
+    .wk-price { text-align: left; align-items: flex-start; flex-direction: row; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .wk-after { margin-top: 0; }
+    .wk-amount { font-size: 44px; }
+    .wk-track { gap: 16px; }
+    .wk-card { flex-basis: 82%; }
+    .wk-foot { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wk-track { scroll-behavior: auto; }
+    .wk-shot img { transition: none; }
+  }
+
   /* ── PROJECTS ── */
   .projects-list { display: flex; flex-direction: column; }
 
@@ -411,6 +463,211 @@
     .tag { font-size: 11px; }
   }
 
+  
+  /* ── WIDGET ── */
+
+:root{
+  --bg:#FFFFFF;--bg-card:#FFFFFF;--bg-surf:#F2F2F2;--txt:#0A0A0A;--txt-2:#555555;--txt-3:#888888;
+  --bdr:rgba(0,0,0,.08);--bdr-2:rgba(0,0,0,.15);--accent:#E8001A;--acc-lt:#FFF0F0;--acc-dk:#B30014;
+  --green:#1D9E75;--red:#E8001A;--gold:#d97706;--gold-lt:#fef3c7;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;--font:'Inter',sans-serif;
+}
+/* globals removed for portfolio integration */
+.page{max-width:960px;margin:0 auto}
+.hdr{text-align:center;margin-bottom:1.75rem}
+.hdr .eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.hdr h1{font-family:'Bebas Neue',sans-serif;font-size:42px;font-weight:400;letter-spacing:2px;line-height:1.1;color:var(--txt);margin-bottom:8px}
+.hdr p{font-size:14px;color:var(--txt-2);line-height:1.6}
+.prog-wrap{margin-bottom:1.5rem}
+.prog-lbl{font-size:12px;color:var(--txt-3);margin-bottom:5px;text-align:right}
+.prog{height:3px;background:var(--bdr);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .5s ease}
+.steps-bar{display:flex;align-items:center;gap:0;margin-bottom:2.5rem}
+.step-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt-3);font-weight:500}
+.step-item.active{color:var(--accent)}.step-item.done{color:var(--green)}
+.step-dot{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--bdr-2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--txt-3);flex-shrink:0}
+.step-item.active .step-dot{border-color:var(--accent);color:var(--accent);background:var(--acc-lt)}
+.step-item.done .step-dot{border-color:var(--green);background:var(--green);color:#fff;font-size:13px}
+.step-line{flex:1;height:1.5px;background:var(--bdr-2);margin:0 6px}
+.step-line.done{background:var(--green)}
+.chat-win{background:var(--bg-card);border:0.5px solid var(--bdr);border-radius:var(--r-xl);padding:1.25rem 1.25rem .5rem;margin-bottom:1rem;max-height:420px;overflow-y:auto}
+.brow{display:flex;gap:10px;margin-bottom:1rem;align-items:flex-end}
+.brow.agent{flex-direction:row}.brow.user{flex-direction:row-reverse}
+.av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.av.agent{background:#F2F2F2;color:#0A0A0A}.av.user{background:var(--acc-lt);color:var(--acc-dk)}
+.bbl{max-width:82%;padding:10px 14px;font-size:14px;line-height:1.6}
+.bbl.agent{background:var(--bg-surf);color:var(--txt);border-radius:4px 16px 16px 16px}
+.bbl.user{background:var(--accent);color:#fff;border-radius:16px 4px 16px 16px;cursor:pointer;transition:opacity .15s;position:relative}
+.bbl.user:hover{opacity:.88}
+.bbl.user .edit-hint{display:block;font-size:11px;opacity:.7;margin-top:4px}
+.bbl strong{font-weight:500}
+.typing{display:flex;gap:4px;align-items:center;padding:4px 0}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--txt-3);animation:blink 1.2s infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.cat-card{padding:14px;border:0.5px solid var(--bdr-2);border-radius:var(--r-lg);font-size:13px;font-family:var(--font);cursor:pointer;background:var(--bg-card);color:var(--txt);transition:all .15s;text-align:left}
+.cat-card:hover{border-color:var(--accent)}.cat-card.sel{border:1.5px solid var(--accent);background:var(--acc-lt)}
+.cat-icon{display:block;margin-bottom:8px}.cat-icon svg{width:22px;height:22px}
+.cat-card.sel .cat-icon svg{stroke:var(--accent)}
+.cat-name{font-weight:500;display:block;margin-bottom:2px;color:var(--txt)}.cat-card.sel .cat-name{color:var(--acc-dk)}
+.cat-sub{font-size:11px;color:var(--txt-3);display:block;line-height:1.4}.cat-card.sel .cat-sub{color:var(--accent)}
+.opts-list-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem}
+.opt-step{text-align:left;padding:12px 16px;border:0.5px solid var(--bdr-2);border-radius:var(--r-lg);font-size:14px;font-family:var(--font);cursor:pointer;background:var(--bg-card);color:var(--txt);transition:all .15s;line-height:1.4;display:flex;align-items:center;gap:10px}
+.opt-step:hover{border-color:var(--accent)}.opt-step.sel{border:1.5px solid var(--accent);background:var(--acc-lt);color:var(--acc-dk)}
+.opt-radio{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--bdr-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.opt-step.sel .opt-radio{border-color:var(--accent)}
+.opt-step.sel .opt-radio::after{content:'';width:9px;height:9px;border-radius:50%;background:var(--accent);display:block}
+.opt-check{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--bdr-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.opt-step.sel .opt-check{border-color:var(--accent);background:var(--accent)}
+.opt-step.sel .opt-check::after{content:'✓';color:#fff;font-size:11px;font-weight:500}
+.opt-label{flex:1}.opt-price{font-size:12px;color:var(--accent);font-weight:500;white-space:nowrap;margin-left:auto}
+.opt-step.sel .opt-price{color:var(--acc-dk)}
+.opts-list-chat{display:flex;flex-direction:column;gap:7px;padding-left:42px;margin-bottom:8px}
+.opt-chat{text-align:left;padding:10px 15px;border:0.5px solid var(--bdr-2);border-radius:var(--r-lg);font-size:13px;font-family:var(--font);cursor:pointer;background:var(--bg-card);color:var(--txt);transition:all .15s;line-height:1.4}
+.opt-chat:hover{border-color:var(--accent);color:var(--accent)}.opt-chat.sel{border-color:var(--accent);background:var(--acc-lt);color:var(--acc-dk)}
+.section-q{font-size:18px;font-weight:500;color:var(--txt);margin-bottom:1.25rem;line-height:1.35}
+.confirm-btn{padding:9px 20px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-md);font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;display:none;transition:opacity .15s;margin-top:4px}
+.confirm-btn.chat{margin-left:42px}.confirm-btn:hover{opacity:.88}.confirm-btn.show{display:block}
+.btn-row{display:flex;gap:10px;align-items:center}
+.btn-next{padding:11px 24px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-md);font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;transition:opacity .15s}
+.btn-next:hover{opacity:.88}.btn-next:disabled{opacity:.35;cursor:default}
+.btn-back{padding:11px 16px;background:transparent;color:var(--txt-2);border:0.5px solid var(--bdr-2);border-radius:var(--r-md);font-size:14px;font-family:var(--font);cursor:pointer;transition:all .15s}
+.btn-back:hover{background:var(--bg-surf)}
+.answered-steps{margin-bottom:2rem}
+.answered-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg-card);border:0.5px solid var(--bdr);border-radius:var(--r-md);margin-bottom:8px;font-size:13px}
+.answered-q{color:var(--txt-3);font-size:12px;margin-bottom:2px}.answered-a{color:var(--txt);font-weight:500}
+.edit-btn{font-size:12px;padding:4px 10px;border:0.5px solid var(--bdr-2);border-radius:var(--r-sm);background:transparent;cursor:pointer;font-family:var(--font);color:var(--txt-2);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.edit-btn:hover{background:var(--bg-surf);border-color:var(--accent);color:var(--accent)}
+/* Offer cards */
+.offer-section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--txt-3);margin:16px 0 8px;padding:0}
+.offer-section-label:first-child{margin-top:0}
+.offer-card{background:var(--bg-card);border:0.5px solid var(--bdr);border-radius:var(--r-lg);padding:1rem 1.25rem;margin-bottom:10px;transition:opacity .2s}
+.offer-card.off{opacity:.35}
+.offer-card.is-free{border-color:rgba(29,158,117,.3);background:rgba(29,158,117,.04)}
+.offer-card.is-monthly{border-color:rgba(217,119,6,.25);background:var(--gold-lt)}
+.offer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:5px}
+.offer-name{font-size:14px;font-weight:500;color:var(--txt);line-height:1.3}
+.offer-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.offer-price{font-size:14px;font-weight:500;color:var(--accent)}
+.offer-card.is-free .offer-price{color:var(--green)}
+.offer-card.is-monthly .offer-price{color:var(--gold)}
+.offer-detail{font-size:12px;color:var(--txt-2);line-height:1.6;margin-bottom:4px}
+.offer-tl{font-size:12px;color:var(--txt-3);display:flex;align-items:center;gap:4px}
+.offer-tl svg{width:13px;height:13px;flex-shrink:0}
+.offer-setup-note{font-size:12px;color:var(--txt-2);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--bdr)}
+.offer-setup-note strong{color:var(--txt)}
+.tog{font-size:11px;padding:3px 10px;border-radius:var(--r-md);border:0.5px solid var(--bdr-2);background:transparent;cursor:pointer;font-family:var(--font);color:var(--txt-2);transition:all .15s;white-space:nowrap}
+.tog:hover{background:var(--bg-surf)}.tog.on{color:var(--acc-dk);border-color:var(--accent)}
+/* Invoice layout */
+.inv-wrap{display:flex;flex-direction:column;gap:0}
+.inv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.inv-title{font-size:16px;font-weight:600;color:var(--txt)}
+.inv-edit-btn{background:none;border:0.5px solid var(--bdr-2);border-radius:6px;font-size:12px;font-family:var(--font);color:var(--txt-2);cursor:pointer;padding:4px 10px;transition:all .15s}
+.inv-edit-btn:hover{background:var(--bg-surf);color:var(--txt)}
+.inv-list{display:flex;flex-direction:column;gap:0}
+.inv-group{background:var(--bg-card);border:0.5px solid var(--bdr);border-radius:16px;padding:6px 18px 4px;margin-bottom:12px}
+.inv-group .inv-row:last-child{border-bottom:none}
+.inv-group-hdr{font-size:15px;font-weight:600;color:var(--txt);padding:12px 0 4px;border-bottom:0.5px solid var(--bdr)}
+.inv-group .inv-name{font-weight:400;color:var(--txt-2)}
+.inv-totals-card{background:#0A0A0A;border:none;border-radius:16px;padding:8px 20px 16px;margin-bottom:4px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.inv-totals-card .inv-divider{display:none}
+.inv-totals-card .inv-group-hdr{color:#fff;border-bottom-color:rgba(255,255,255,.15)}
+.inv-totals-card .inv-total-lbl{color:rgba(255,255,255,.7)}
+.inv-totals-card .inv-total-row:first-of-type .inv-total-val{font-size:22px}
+.inv-totals-card .inv-total-val.accent{color:#FF3347}
+.inv-totals-card .inv-total-val.gold{color:#F5A623}
+.inv-totals-card .inv-total-val.renew{color:#fff}
+.inv-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid var(--bdr)}
+.inv-row:last-child{border-bottom:none}
+.inv-name{font-size:13px;color:var(--txt);font-weight:500}
+.inv-right{display:flex;align-items:center;gap:6px;text-align:right}
+.inv-once-price{font-size:13px;font-weight:500;color:var(--txt)}
+.inv-sub-price{font-size:13px;font-weight:500;color:var(--txt)}
+.inv-sub-label{font-size:11px;color:var(--txt-3);margin-left:1px}
+.inv-sep{font-size:11px;color:var(--txt-3)}
+.inv-mo-price{font-size:13px;font-weight:500;color:var(--txt)}
+.inv-divider{height:0.5px;background:var(--bdr-2);margin:12px 0}
+.inv-totals{margin-top:4px}
+.inv-total-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0}
+.inv-total-lbl{font-size:13px;color:var(--txt-2)}
+.inv-total-val{font-size:15px;font-weight:700}
+.inv-total-val.accent{color:var(--accent)}
+.inv-total-val.gold{color:var(--gold)}
+.inv-note{font-size:11px;color:var(--txt-3);margin:8px 0 16px;line-height:1.5}
+.inv-edit-panel{background:var(--bg-surf);border:0.5px solid var(--bdr);border-radius:var(--r-md);padding:12px 14px;margin-bottom:12px;display:flex;flex-direction:column;gap:8px}
+.inv-edit-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt);cursor:pointer}
+.inv-edit-row input{accent-color:var(--accent);width:14px;height:14px;cursor:pointer}
+/* Total bar (kept for compat) */
+.total-bar{background:var(--bg-surf);border:0.5px solid var(--bdr);border-radius:var(--r-md);padding:14px 16px;margin:1rem 0}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:13px}
+.total-row .lbl{color:var(--txt-2)}
+.total-row .val{font-weight:500;color:var(--txt)}
+.total-row .val.blue{color:var(--accent)}
+.total-row .val.gold{color:var(--gold)}
+.total-row .val.green{color:var(--green)}
+.total-divider{height:0.5px;background:var(--bdr-2);margin:8px 0}
+.cta-p{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-md);font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;transition:opacity .15s;margin-bottom:8px}
+.cta-p:hover{opacity:.88}
+.cta-s{width:100%;padding:10px;background:transparent;color:var(--txt-2);border:0.5px solid var(--bdr-2);border-radius:var(--r-md);font-size:13px;font-family:var(--font);cursor:pointer;transition:all .15s}
+.cta-s:hover{background:var(--bg-surf)}
+/* Mode cards */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem}
+.mode-card{padding:2rem 1.5rem;border:0.5px solid var(--bdr-2);border-radius:var(--r-xl);background:var(--bg-card);cursor:pointer;text-align:left;font-family:var(--font);transition:all .2s;display:flex;flex-direction:column;gap:14px}
+.mode-card:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(232,0,26,.08)}
+.mode-icon{width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center}
+.mode-icon.steps{background:#FFF0F0}.mode-icon.chat{background:#F2F2F2}
+.mode-icon svg{width:22px;height:22px}
+.mode-title{font-size:16px;font-weight:500;color:var(--txt);margin-bottom:4px}
+.mode-desc{font-size:13px;color:var(--txt-2);line-height:1.55}
+.mode-tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:4px;font-weight:500;margin-top:4px}
+.mode-tag.fast{background:#FFF0F0;color:#B30014}.mode-tag.guided{background:#F2F2F2;color:#555555}
+.mode-cta{margin-top:auto;font-size:13px;font-weight:500;color:var(--accent);display:flex;align-items:center;gap:4px}
+/* Form */
+.form-box{background:var(--bg-card);border:0.5px solid var(--bdr);border-radius:var(--r-xl);padding:1.75rem;margin-top:.5rem}
+.form-box h2{font-size:18px;font-weight:500;margin-bottom:4px}.form-sub{font-size:13px;color:var(--txt-2);margin-bottom:1.25rem;line-height:1.6}
+.recap{background:var(--bg-surf);border-radius:var(--r-md);padding:12px 14px;margin-bottom:1.25rem;border:0.5px solid var(--bdr)}
+.recap-title{font-size:11px;color:var(--txt-3);font-weight:500;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+.recap-row{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+.recap-row span:first-child{color:var(--txt)}.recap-row span:last-child{color:var(--accent)}
+.recap-row.monthly span:last-child{color:var(--gold)}
+.recap-row.free span:last-child{color:var(--green)}
+.recap-section-hdr{font-size:11px;color:var(--txt-3);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-top:10px;margin-bottom:4px;padding-top:8px;border-top:0.5px solid var(--bdr)}
+.recap-section-hdr:first-of-type{margin-top:0;border-top:none;padding-top:0}
+.recap-total{display:flex;justify-content:space-between;font-size:14px;font-weight:500;border-top:0.5px solid var(--bdr-2);margin-top:8px;padding-top:8px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.frow.full{grid-template-columns:1fr}
+.fld label{font-size:12px;color:var(--txt-2);display:block;margin-bottom:4px;font-weight:500}
+.fld input,.fld select,.fld textarea{width:100%;font-size:13px;font-family:var(--font);padding:9px 12px;border:0.5px solid var(--bdr-2);border-radius:var(--r-sm);background:var(--bg-card);color:var(--txt);outline:none;transition:border-color .15s;appearance:none;-webkit-appearance:none}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(24,95,165,.1)}
+.fld textarea{height:80px;resize:vertical;line-height:1.5}
+.fld select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b67' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
+.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem;padding-top:1.25rem;border-top:0.5px solid var(--bdr)}
+.back-btn{padding:9px 16px;border:0.5px solid var(--bdr-2);background:transparent;border-radius:var(--r-sm);font-size:13px;font-family:var(--font);cursor:pointer;color:var(--txt-2);transition:all .15s}
+.back-btn:hover{background:var(--bg-surf)}
+.sub-btn{padding:9px 20px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;transition:opacity .15s}
+.sub-btn:hover{opacity:.88}
+/* Back to modes button */
+.back-to-modes{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--bg-card);border:1px solid var(--bdr-2);border-radius:var(--r-md);font-family:var(--font);font-size:13px;font-weight:500;color:var(--txt-2);cursor:pointer;transition:all .15s;margin-top:1rem}
+.back-to-modes:hover{border-color:var(--accent);color:var(--accent);background:var(--acc-lt)}
+/* Success */
+.success-wrap{text-align:center;padding:3rem 1rem}
+.success-icon{margin-bottom:1rem}.success-icon svg{width:52px;height:52px;stroke:var(--green)}
+.success-wrap h2{font-size:20px;font-weight:500;margin-bottom:8px}
+.success-wrap p{font-size:14px;color:var(--txt-2);line-height:1.7;max-width:380px;margin:0 auto}
+@media(max-width:520px){
+  .mode-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .hdr h1{font-size:22px}
+}
+
+
+  /* ── CONSULT FORM PLACEHOLDERS ── */
+  #cf-name::placeholder,#cf-org::placeholder,#cf-email::placeholder,#cf-phone::placeholder,#cf-note::placeholder{color:#b0b0b0}
+  #cf-name,#cf-org,#cf-email,#cf-phone,#cf-note,#cf-calltime{background:#f5f5f5}
+  #cf-calltime{color:var(--txt)}
+  #cf-calltime option[value=""]{color:#b0b0b0}
+
   /* ── CONTACT ── */
   .contact { background: var(--black); color: var(--white); }
   .contact .section-label { color: var(--red); }
@@ -510,6 +767,31 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
+
+  /* ── CAT PRICE LABEL ── */
+  .cat-price{
+    display:block;margin-top:6px;
+    font-size:11px;font-weight:600;letter-spacing:.04em;
+    color:var(--accent);
+  }
+
+  /* ── BRAND CHECK ── */
+  .brand-check-card{background:var(--bg-card);border:0.5px solid var(--bdr-2);border-radius:var(--r-xl);padding:1.75rem}
+  .brand-check-q{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;color:var(--txt);margin-bottom:1.25rem;line-height:1.2}
+  .brand-check-opts{display:flex;flex-direction:column;gap:10px}
+  .brand-check-btn{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 18px;
+    border:0.5px solid var(--bdr-2);border-radius:var(--r-md);
+    background:var(--bg-surf);cursor:pointer;text-align:left;
+    transition:all .15s;font-family:var(--font);
+  }
+  .brand-check-btn:hover{border-color:var(--accent);background:var(--acc-lt)}
+  .bc-icon{font-size:20px;width:28px;text-align:center;flex-shrink:0;color:var(--green)}
+  .brand-check-btn div{display:flex;flex-direction:column;gap:3px}
+  .brand-check-btn strong{font-size:14px;font-weight:600;color:var(--txt)}
+  .brand-check-btn span:not(.bc-icon){font-size:12px;color:var(--txt-3)}
+
 </style>
 </head>
 <body>
@@ -519,6 +801,7 @@
   <ul class="nav-links">
     <li><a href="#projects">Work</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -595,146 +878,1218 @@
 <!-- PROJECTS -->
 <section id="projects">
   <p class="section-label reveal">Selected Work</p>
-  <div class="projects-list">
+  <p class="wk-lede">Recent projects, grouped by the kind of site each client needed.</p>
 
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">01</span>
-        <p class="project-type">Web Application</p>
-        <h3 class="project-title">Interpreter Scheduling Platform</h3>
-        <p class="project-desc">Scheduling and management platform for interpreter services. Secure login, protected routing, and mobile-responsive appointment management across multiple user types.</p>
-        <div class="project-links"><a href="https://scheduleint.com" class="project-link" target="_blank">scheduleint.com</a></div>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Scheduling</span><span class="tag">Secure Login</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Schedule%20INT.jpg" alt="Interpreter Scheduling Platform screenshot" class="project-thumb">
+  <div class="wk-tier" aria-labelledby="wk-tier-0">
+    <div class="wk-head">
+      <div class="wk-intro">
+        <h3 class="wk-title" id="wk-tier-0">Brochure sites</h3>
+        <p class="wk-blurb">One to three pages that tell people who you are and how to reach you.</p>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-text reveal">
-        <span class="project-num">02</span>
-        <p class="project-type">Web Application</p>
-        <h3 class="project-title">Catering Cost Control App</h3>
-        <p class="project-desc">Web application for a catering operation covering inventory management, recipe costing, invoicing, and reporting. Deployed to production with a custom domain.</p>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Inventory</span><span class="tag">Invoicing</span></div>
-      </div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Catering%20Cost%20Control%20App.jpg" alt="Catering Cost Control App screenshot" class="project-thumb">
-      </div>
-    </div>
-
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">03</span>
-        <p class="project-type">Web Application</p>
-        <h3 class="project-title">Professional Linguists Association</h3>
-        <p class="project-desc">Global membership platform for the Haitian Association of Interpreters and Translators International. Includes a professional registry, membership application, member portal, and a client-facing interpreter request flow.</p>
-        <div class="project-links"><a href="https://www.haitinet.org" class="project-link" target="_blank">haitinet.org</a></div>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Registry</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Haitinet.jpg" alt="Professional Linguists Association screenshot" class="project-thumb">
+    <div class="wk-rail">
+      <div class="wk-track" tabindex="0" aria-label="Brochure sites projects">
+        <a class="wk-card" href="https://tainoshield.com" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Taino%20Shield.jpg" alt="Cybersecurity Company website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Cybersecurity Company</h4>
+          <p class="wk-desc">Landing page with an animated hero and a free security checkup.</p>
+          <span class="wk-domain">tainoshield.com</span></a>
+        <a class="wk-card" href="https://mushindojo.net" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Mushin%20Dojo.jpg" alt="Martial Arts School website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Martial Arts School</h4>
+          <p class="wk-desc">French-language site with programs, class schedule, gallery and events.</p>
+          <span class="wk-domain">mushindojo.net</span></a>
+        <a class="wk-card" href="https://neriahcommunityhealth.org" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Neriah%20Community%20Health.jpg" alt="Community Health Foundation website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Community Health Foundation</h4>
+          <p class="wk-desc">Full rebuild with scroll animations and a content editor for staff.</p>
+          <span class="wk-domain">neriahcommunityhealth.org</span></a>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-text reveal">
-        <span class="project-num">04</span>
-        <p class="project-type">Web Application</p>
-        <h3 class="project-title">Personal Finance App</h3>
-        <p class="project-desc">Personal finance application with dynamic budget categories, income goal tracking, opening and closing balances, and a collapsible budget system.</p>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Finance</span><span class="tag">Dashboard</span></div>
-      </div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Personal%20Finance%20App.jpg" alt="Personal Finance App screenshot" class="project-thumb">
+    <div class="wk-foot">
+      <div class="wk-arrows">
+        <button class="wk-arrow prev" aria-label="Previous brochure sites project" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="wk-arrow next" aria-label="Next brochure sites project"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
     </div>
+  </div>
 
-    <div class="project-item">
-      <div class="project-text reveal">
-        <span class="project-num">05</span>
-        <p class="project-type">Website</p>
-        <h3 class="project-title">Ebook &amp; Digital Course Sites</h3>
-        <p class="project-desc">E-commerce site built for a sales and marketing training company offering books and courses in French, English, and Haitian Creole. Features clean checkout experience and digital product listings.</p>
-        <div class="project-links"><a href="https://www.lpfconseils.com" class="project-link" target="_blank">lpfconseils.com</a></div>
-        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Ebooks</span><span class="tag">Courses</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/LPF%20Conseils.jpg" alt="Ebook & Digital Course Sites screenshot" class="project-thumb">
+  <div class="wk-tier" aria-labelledby="wk-tier-1">
+    <div class="wk-head">
+      <div class="wk-intro">
+        <h3 class="wk-title" id="wk-tier-1">E-commerce &amp; booking</h3>
+        <p class="wk-blurb">Sell products or take bookings online.</p>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">06</span>
-        <p class="project-type">Website</p>
-        <h3 class="project-title">Cybersecurity Company</h3>
-        <p class="project-desc">Conversion-focused landing page with an animated fiber optic hero header, free assessment tool, service packages, and clear calls to action.</p>
-        <div class="project-links"><a href="https://www.tainoshield.com" class="project-link" target="_blank">tainoshield.com</a></div>
-        <div class="project-tags"><span class="tag">Landing Page</span><span class="tag">Animation</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Taino%20Shield.jpg" alt="Cybersecurity Company screenshot" class="project-thumb">
+    <div class="wk-rail">
+      <div class="wk-track" tabindex="0" aria-label="E-commerce &amp; booking projects">
+        <a class="wk-card" href="https://lpfconseils.com" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/LPF%20Conseils.jpg" alt="Ebook &amp; Digital Course Sites website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Ebook &amp; Digital Course Sites</h4>
+          <p class="wk-desc">Store for books and courses in French, English and Haitian Creole.</p>
+          <span class="wk-domain">lpfconseils.com</span></a>
+        <a class="wk-card" href="https://lakoubreda.com" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Lakou%20Breda.jpg" alt="Eco-Resort website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Eco-Resort</h4>
+          <p class="wk-desc">Editorial site built around the resort’s own photography.</p>
+          <span class="wk-domain">lakoubreda.com</span></a>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">07</span>
-        <p class="project-type">Website</p>
-        <h3 class="project-title">Martial Arts School</h3>
-        <p class="project-desc">Multi-page site for a traditional Aikido and Karate school in Haiti. Features course programs for children and adults, a photo gallery, event listings, a contact form, and class scheduling. Built in French with a spirit true to the Japanese martial tradition.</p>
-        <div class="project-links"><a href="https://www.mushindojo.net" class="project-link" target="_blank">mushindojo.net</a></div>
-        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">French</span><span class="tag">Contact Form</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Mushin%20Dojo.jpg" alt="Martial Arts School screenshot" class="project-thumb">
+    <div class="wk-foot">
+      <div class="wk-arrows">
+        <button class="wk-arrow prev" aria-label="Previous e-commerce &amp; booking project" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="wk-arrow next" aria-label="Next e-commerce &amp; booking project"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
     </div>
+  </div>
 
-    <div class="project-item">
-      <div class="project-text reveal">
-        <span class="project-num">08</span>
-        <p class="project-type">Web Application</p>
-        <h3 class="project-title">Bar Association Platform</h3>
-        <p class="project-desc">Official platform for the Barreau de Port-au-Prince, founded in 1859. Includes a public-facing site, member portal with secure login, and an online membership application flow.</p>
-        <div class="project-links"><a href="https://www.barreaudeportauprince.com" class="project-link" target="_blank">barreaudeportauprince.com</a></div>
-        <div class="project-tags"><span class="tag">Web App</span><span class="tag">Membership</span><span class="tag">Secure Login</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Barreau%20de%20Port-au-Prince.jpg" alt="Bar Association Platform screenshot" class="project-thumb">
+  <div class="wk-tier" aria-labelledby="wk-tier-2">
+    <div class="wk-head">
+      <div class="wk-intro">
+        <h3 class="wk-title" id="wk-tier-2">Membership sites</h3>
+        <p class="wk-blurb">Member logins, applications and members-only content.</p>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">09</span>
-        <p class="project-type">Website</p>
-        <h3 class="project-title">Cultural Education Platform</h3>
-        <p class="project-desc">Membership and course site for a cultural educator offering online courses and books in Haitian Creole. Includes course pages, member login, and e-commerce checkout.</p>
-        <div class="project-links"><a href="https://bilolokongo.com" class="project-link" target="_blank">bilolokongo.com</a></div>
-        <div class="project-tags"><span class="tag">E-commerce</span><span class="tag">Membership</span><span class="tag">Haitian Creole</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Bilolo%20Kongo.jpg" alt="Cultural Education Platform screenshot" class="project-thumb">
+    <div class="wk-rail">
+      <div class="wk-track" tabindex="0" aria-label="Membership sites projects">
+        <a class="wk-card" href="https://haitinet.org" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Haitinet.jpg" alt="Professional Linguists Association website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Professional Linguists Association</h4>
+          <p class="wk-desc">Member registry, applications, member portal and interpreter requests.</p>
+          <span class="wk-domain">haitinet.org</span></a>
+        <a class="wk-card" href="https://bilolokongo.com" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Bilolo%20Kongo.jpg" alt="Cultural Education Platform website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Cultural Education Platform</h4>
+          <p class="wk-desc">Courses and books in Haitian Creole, with member login and checkout.</p>
+          <span class="wk-domain">bilolokongo.com</span></a>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">10</span>
-        <p class="project-type">Website</p>
-        <h3 class="project-title">Community Health Foundation</h3>
-        <p class="project-desc">Full website rebuild with scroll animations, real photo integration, a custom content management panel, and complete deployment setup.</p>
-        <div class="project-links"><a href="https://neriahcommunityhealth.org" class="project-link" target="_blank">neriahcommunityhealth.org</a></div>
-        <div class="project-tags"><span class="tag">Multi-page</span><span class="tag">Nonprofit</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Neriah%20Community%20Health.jpg" alt="Community Health Foundation screenshot" class="project-thumb">
+    <div class="wk-foot">
+      <div class="wk-arrows">
+        <button class="wk-arrow prev" aria-label="Previous membership sites project" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="wk-arrow next" aria-label="Next membership sites project"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
     </div>
+  </div>
 
-    <div class="project-item">
-      <div class="project-text reveal"><span class="project-num">11</span>
-        <p class="project-type">Website</p>
-        <h3 class="project-title">Eco-Resort</h3>
-        <p class="project-desc">Editorial-style site for a Cap-Haïtien eco-resort. Real photography and an immersive layout built to capture the atmosphere of the location.</p>
-        <div class="project-links"><a href="https://lakoubreda.com" class="project-link" target="_blank">lakoubreda.com</a></div>
-        <div class="project-tags"><span class="tag">Editorial</span><span class="tag">Photography</span></div></div>
-      <div class="project-image-wrap">
-        <img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Lakou%20Breda.jpg" alt="Eco-Resort screenshot" class="project-thumb">
+  <div class="wk-tier" aria-labelledby="wk-tier-3">
+    <div class="wk-head">
+      <div class="wk-intro">
+        <h3 class="wk-title" id="wk-tier-3">Web apps</h3>
+        <p class="wk-blurb">Custom tools built around how your business works.</p>
       </div>
     </div>
-
+    <div class="wk-rail">
+      <div class="wk-track" tabindex="0" aria-label="Web apps projects">
+        <a class="wk-card" href="https://scheduleint.com" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Schedule%20INT.jpg" alt="Interpreter Scheduling Platform website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Interpreter Scheduling Platform</h4>
+          <p class="wk-desc">Scheduling for agencies and interpreters, with a secure login for each role.</p>
+          <span class="wk-domain">scheduleint.com</span></a>
+        <div class="wk-card"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Catering%20Cost%20Control%20App.jpg" alt="Catering Cost Control App website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Catering Cost Control App</h4>
+          <p class="wk-desc">Inventory, recipe costing, invoicing and reports for a catering business.</p>
+          <span class="wk-domain private">Private client app</span></div>
+        <div class="wk-card"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Personal%20Finance%20App.jpg" alt="Personal Finance App website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Personal Finance App</h4>
+          <p class="wk-desc">Budgets, income goals and balances in one dashboard.</p>
+          <span class="wk-domain private">Private client app</span></div>
+        <a class="wk-card" href="https://barreaudeportauprince.com" target="_blank" rel="noopener"><div class="wk-shot"><img src="https://raw.githubusercontent.com/thysrany/portfolio/main/Barreau%20de%20Port-au-Prince.jpg" alt="Bar Association Platform website screenshot" loading="lazy"></div>
+          <h4 class="wk-name">Bar Association Platform</h4>
+          <p class="wk-desc">Public site, member portal and online membership applications.</p>
+          <span class="wk-domain">barreaudeportauprince.com</span></a>
+      </div>
+    </div>
+    <div class="wk-foot">
+      <div class="wk-arrows">
+        <button class="wk-arrow prev" aria-label="Previous web apps project" disabled><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="wk-arrow next" aria-label="Next web apps project"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- SERVICES / QUOTE WIDGET -->
+<section id="services" class="section" style="background: var(--gray); padding: clamp(64px, 10vh, 120px) var(--pad);">
+  <p class="section-label reveal">Services &amp; Pricing</p>
+<div class="page">
+  <div class="hdr">
+    <div class="eyebrow">Free consultation</div>
+    <h1>Get a custom offer</h1>
+    <p>Choose how you'd like to get started.</p>
+  </div>
+
+  <!-- FREE CONSULTATION BANNER -->
+  <div id="consult-banner" style="margin-bottom:1.5rem;padding:1rem 1.25rem;background:#fff;border:1.5px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <span style="width:36px;height:36px;border-radius:50%;background:var(--gray2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8001A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </span>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--txt)">Not sure where to start?</div>
+        <div style="font-size:13px;color:var(--txt-2)">Book a free 30-min call — no commitment, no pressure.</div>
+      </div>
+    </div>
+    <button id="consult-banner-btn" style="flex-shrink:0;padding:0.55rem 1.1rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Book a free call →</button>
+  </div>
+
+  <!-- MODE PICKER -->
+  <div id="mode-screen">
+    <div class="mode-grid">
+      <button class="mode-card" id="pick-steps">
+        <div class="mode-icon steps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E8001A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+        <div>
+          <div class="mode-title">Browse &amp; select</div>
+          <div class="mode-desc">Pick the services you need and get an instant quote.</div>
+          <div class="mode-tag fast">Quick &amp; direct</div>
+        </div>
+        <div class="mode-cta">Get started <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </button>
+      <button class="mode-card" id="pick-chat">
+        <div class="mode-icon chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <div class="mode-title">Chat with our assistant</div>
+          <div class="mode-desc">Answer a few questions and we'll build a tailored offer.</div>
+          <div class="mode-tag guided">Guided experience</div>
+        </div>
+        <div class="mode-cta">Start chatting <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEPS MODE -->
+  <div id="steps-screen" style="display:none">
+    <div id="steps-bar"></div>
+    <div id="steps-answered"></div>
+    <div id="steps-current"></div>
+    <button class="back-to-modes" id="steps-back-to-modes">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Choose a different approach
+    </button>
+  </div>
+
+  <!-- CHAT MODE -->
+  <div id="chat-screen" style="display:none">
+    <div class="prog-wrap">
+      <div class="prog-lbl" id="prog-lbl">Let’s get started…</div>
+      <div class="prog"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="chat-win"><div id="msgs"></div></div>
+    <div id="chat-opts"></div>
+    <div id="chat-offer"></div>
+    <div id="chat-form"></div>
+    <button class="back-to-modes" id="chat-back-to-modes">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Choose a different approach
+    </button>
+  </div>
+</div>
+</section>
+
+<script>
+/* ══════════════════════════════════════════
+   ICONS
+══════════════════════════════════════════ */
+const ICONS={
+  consultation:`<svg viewBox="0 0 24 24" fill="none" stroke="#6b6b67" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  brand:`<svg viewBox="0 0 24 24" fill="none" stroke="#6b6b67" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+  web:`<svg viewBox="0 0 24 24" fill="none" stroke="#6b6b67" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  social:`<svg viewBox="0 0 24 24" fill="none" stroke="#6b6b67" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L9 10H5a2 2 0 0 0-2 2v0a2 2 0 0 0 2 2h1l2 5h2l-1-5h1l12 7V3z"/></svg>`,
+  clock:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  check:`<svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+};
+
+/* ══════════════════════════════════════════
+   CATEGORIES
+══════════════════════════════════════════ */
+const CATS={
+  brand: {label:'Branding Kit',  iconKey:'brand', sub:'Logo, domain, email & social media designs', startingAt:'Starting at $150'},
+  web:   {label:'Website',       iconKey:'web',   sub:'Brochure, e-commerce, membership or web app', startingAt:'Starting at $29.95/mo'},
+};
+
+/* ══════════════════════════════════════════
+   FOLLOW-UP QUESTIONS (condition-aware)
+══════════════════════════════════════════ */
+const FOLLOW_UPS={
+  consultation:[],
+
+  brand:[
+    {id:'brandKit', q:'Which branding kit fits your needs?', msg:"Which branding kit fits your needs?",
+     opts:[
+       {label:'Starter',  sub:'Wordmark logo · 1 mailbox · social media designs · domain & email included', price:'$75 + $34.88/yr', val:'starter',  chat:'Branding Kit — Starter ($75 + $34.88/yr renewal)'},
+       {label:'Standard', sub:'Icon + wordmark logo · 3 mailboxes · social media designs · domain & email',  price:'$150 + $61.88/yr', val:'standard', chat:'Branding Kit — Standard ($150 + $61.88/yr renewal)'},
+       {label:'Full Kit', sub:'Custom illustrated logo · 5 mailboxes · social media designs · domain & email',price:'$300 + $91.88/yr', val:'full',     chat:'Branding Kit — Full Kit ($300 + $91.88/yr renewal)'},
+    ]},
+  ],
+
+  web:[
+    {id:'siteType', q:'What type of website do you need?', msg:"What type of website do you need?",
+     opts:[
+       {label:'Brochure Site',        sub:'1–3 pages · present your business online · domain & email included', price:'$500 build · $29.95/mo', val:'brochure',      chat:'Brochure site ($500 build · $29.95/mo)'},
+       {label:'E-Commerce / Booking', sub:'Online store or booking system · domain & email included',            price:'$800 build · $49.95/mo', val:'ecommerce',     chat:'E-Commerce / Booking ($800 build · $49.95/mo)'},
+       {label:'Membership Site',      sub:'Members-only content or community · domain & email included',         price:'$1,500 build · $97/mo',  val:'membership',    chat:'Membership site ($1,500 build · $97/mo)'},
+       {label:'Web App — Simple',     sub:'Custom tool or platform · basic logic · domain & email included',     price:'$3,000 build · $97/mo',  val:'webapp_simple', chat:'Web App — Simple ($3,000 build · $97/mo)'},
+       {label:'Web App — Advanced',   sub:'Complex flows, integrations & dashboards · domain & email included',  price:'$5,000 build · $197/mo', val:'webapp_adv',    chat:'Web App — Advanced ($5,000 build · $197/mo)'},
+       {label:'Web App — Complex',    sub:'Enterprise-grade platform · custom architecture',                     price:'$8,000 build · $297/mo', val:'webapp_complex',chat:'Web App — Complex ($8,000 build · $297/mo)'},
+    ]},
+    // Mailbox upsell — only for website customers
+    {id:'mailboxes', q:'How many professional email mailboxes do you need?', msg:"How many mailboxes do you need?",
+     opts:[
+       {label:'1 mailbox',  sub:'5 GB — included with your plan',  price:'Included', val:'1', chat:'1 mailbox (included)'},
+       {label:'3 mailboxes',sub:'30 GB total — billed annually',   price:'+$61.88/yr',val:'3', chat:'3 mailboxes — $61.88/yr'},
+       {label:'5 mailboxes',sub:'75 GB total — billed annually',   price:'+$91.88/yr',val:'5', chat:'5 mailboxes — $91.88/yr'},
+    ]},
+  ],
+};
+
+const SHARED_QS=[
+  {id:'timeline', q:"What's your timeline?", msg:"Almost there! What's your timeline looking like?",
+   opts:[
+     {label:'ASAP',           sub:'Rush delivery if needed',  val:'asap', chat:'ASAP — I need this done urgently'},
+     {label:'Within 1 month', sub:'',                         val:'1mo',  chat:'Within 1 month'},
+     {label:'1 to 3 months',  sub:'',                         val:'3mo',  chat:'1 to 3 months'},
+     {label:'Flexible',       sub:'No hard deadline',         val:'flex', chat:'Flexible — no hard deadline'},
+  ]},
+];
+
+/* ══════════════════════════════════════════
+   CATALOG — pitch deck pricing
+   itemType: 'free' | 'onetime' | 'subscription' | 'monthly'
+══════════════════════════════════════════ */
+const CATALOG={
+  // Consultation
+  consultation:{
+    name:'Free 30-Min Consultation',
+    price:0, priceRange:'Free',
+    timeline:'Within 72 hours',
+    detail:'A focused 30-minute call to assess your needs and recommend the best path forward.',
+    itemType:'free',
+  },
+  // Branding Kits — one-time design + annual renewal
+  brand_starter:{
+    name:'Branding Kit — Starter',
+    price:75, priceRange:'$75',
+    annualRenewal:34.88, renewalRange:'$34.88/yr',
+    timeline:'1–2 weeks',
+    detail:'Wordmark logo, social media designs, 1 professional mailbox (5 GB), domain & email. Annual renewal $34.88/yr.',
+    itemType:'onetime',
+  },
+  brand_standard:{
+    name:'Branding Kit — Standard',
+    price:150, priceRange:'$150',
+    annualRenewal:61.88, renewalRange:'$61.88/yr',
+    timeline:'2–3 weeks',
+    detail:'Icon + wordmark logo, social media designs, 3 professional mailboxes (30 GB), domain & email. Annual renewal $61.88/yr.',
+    itemType:'onetime',
+  },
+  brand_full:{
+    name:'Branding Kit — Full',
+    price:300, priceRange:'$300',
+    annualRenewal:91.88, renewalRange:'$91.88/yr',
+    timeline:'3–4 weeks',
+    detail:'Custom illustrated logo, social media designs, 5 professional mailboxes (75 GB), domain & email. Annual renewal $91.88/yr.',
+    itemType:'onetime',
+  },
+  // Website plans — subscription model
+  web_brochure:{
+    name:'Brochure Site',
+    setupRange:'$500 build', setupMid:500,
+    price:29.95, priceRange:'$29.95/mo',
+    timeline:'1–2 weeks to launch',
+    detail:'1–3 page website to present your business online. Includes domain, 1 professional mailbox & monthly maintenance.',
+    itemType:'subscription',
+  },
+  web_ecommerce:{
+    name:'E-Commerce / Booking Site',
+    setupRange:'$800 build', setupMid:800,
+    price:49.95, priceRange:'$49.95/mo',
+    timeline:'3–5 weeks to launch',
+    detail:'Online store or booking system. Includes domain, 1 professional mailbox & priority support.',
+    itemType:'subscription',
+  },
+  web_membership:{
+    name:'Membership Site',
+    setupRange:'$1,500 build', setupMid:1500,
+    price:97, priceRange:'$97/mo',
+    timeline:'4–6 weeks to launch',
+    detail:'Members-only content or community platform. Includes domain, 1 professional mailbox & dedicated support.',
+    itemType:'subscription',
+  },
+  web_webapp_simple:{
+    name:'Web App — Simple',
+    setupRange:'$3,000 build', setupMid:3000,
+    price:97, priceRange:'$97/mo',
+    timeline:'5–8 weeks to launch',
+    detail:'Custom web tool with basic logic and workflows. Includes domain, 1 professional mailbox & dedicated support.',
+    itemType:'subscription',
+  },
+  web_webapp_adv:{
+    name:'Web App — Advanced',
+    setupRange:'$5,000 build', setupMid:5000,
+    price:197, priceRange:'$197/mo',
+    timeline:'8–12 weeks to launch',
+    detail:'Complex platform with integrations, dashboards & advanced logic. Includes domain, 1 mailbox & dedicated support.',
+    itemType:'subscription',
+  },
+  web_webapp_complex:{
+    name:'Web App — Complex',
+    setupRange:'$8,000 build', setupMid:8000,
+    price:297, priceRange:'$297/mo',
+    timeline:'12–20 weeks to launch',
+    detail:'Enterprise-grade platform with custom architecture. Includes domain, 1 professional mailbox & dedicated support.',
+    itemType:'subscription',
+  },
+  // Mailbox upgrades (annual, added on top of website plan)
+  mailbox_3:{
+    name:'Email — 3 Mailboxes (30 GB)',
+    price:61.88, priceRange:'$61.88/yr',
+    timeline:'Included at launch',
+    detail:'Upgrade to 3 professional mailboxes with 30 GB storage — billed annually.',
+    itemType:'annual',
+  },
+  mailbox_5:{
+    name:'Email — 5 Mailboxes (75 GB)',
+    price:91.88, priceRange:'$91.88/yr',
+    timeline:'Included at launch',
+    detail:'Upgrade to 5 professional mailboxes with 75 GB storage — billed annually.',
+    itemType:'annual',
+  },
+  // Annual domain + email renewal for branding kit only customers
+  renewal_starter:{
+    name:'Annual Renewal — Starter (domain + 1 mailbox)',
+    price:34.88, priceRange:'$34.88/yr',
+    timeline:'Yearly',
+    detail:'Annual renewal for domain and 1 professional mailbox (5 GB).',
+    itemType:'annual',
+  },
+  renewal_standard:{
+    name:'Annual Renewal — Standard (domain + 3 mailboxes)',
+    price:61.88, priceRange:'$61.88/yr',
+    timeline:'Yearly',
+    detail:'Annual renewal for domain and 3 professional mailboxes (30 GB).',
+    itemType:'annual',
+  },
+  renewal_full:{
+    name:'Annual Renewal — Full (domain + 5 mailboxes)',
+    price:91.88, priceRange:'$91.88/yr',
+    timeline:'Yearly',
+    detail:'Annual renewal for domain and 5 professional mailboxes (75 GB).',
+    itemType:'annual',
+  },
+};
+
+/* ══════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════ */
+function fmt(n){return n===0?'Free':'$'+n.toLocaleString('en-US',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})}
+
+function buildOffer(selectedCats,answers){
+  const items={};
+  if(selectedCats.includes('consultation'))
+    items.consultation={...CATALOG.consultation,active:true};
+
+  // Brand kit (standalone)
+  if(selectedCats.includes('brand')){
+    const k=answers.brandKit;
+    if(k==='starter'){
+      items.brand={...CATALOG.brand_starter,active:true};
+      items.renewal={...CATALOG.renewal_starter,active:true};
+    } else if(k==='standard'){
+      items.brand={...CATALOG.brand_standard,active:true};
+      items.renewal={...CATALOG.renewal_standard,active:true};
+    } else {
+      items.brand={...CATALOG.brand_full,active:true};
+      items.renewal={...CATALOG.renewal_full,active:true};
+    }
+  }
+
+  // Website
+  if(selectedCats.includes('web')){
+    const st=answers.siteType;
+    const webMap={
+      brochure:'web_brochure', ecommerce:'web_ecommerce', membership:'web_membership',
+      webapp_simple:'web_webapp_simple', webapp_adv:'web_webapp_adv', webapp_complex:'web_webapp_complex',
+    };
+    if(webMap[st]) items.web={...CATALOG[webMap[st]],active:true};
+
+    // Mailbox upsell
+    const mb=answers.mailboxes;
+    if(mb==='3') items.mailbox={...CATALOG.mailbox_3,active:true};
+    else if(mb==='5') items.mailbox={...CATALOG.mailbox_5,active:true};
+
+  }
+  return items;
+}
+
+function activeOf(items){return Object.values(items).filter(x=>x.active)}
+function onetimeItems(items){return activeOf(items).filter(x=>x.itemType==='onetime')}
+function subscriptionItems(items){return activeOf(items).filter(x=>x.itemType==='subscription')}
+function monthlyItems(items){return activeOf(items).filter(x=>x.itemType==='monthly')}
+function annualItems(items){return activeOf(items).filter(x=>x.itemType==='annual')}
+function freeItems(items){return activeOf(items).filter(x=>x.itemType==='free')}
+
+function onetimeTotal(items){return onetimeItems(items).reduce((s,x)=>s+x.price,0)}
+function monthlyTotal(items){return [...subscriptionItems(items),...monthlyItems(items)].reduce((s,x)=>s+x.price,0)}
+
+function getMaxWeeks(items){
+  let m=0;
+  activeOf(items).forEach(x=>{const ns=x.timeline.match(/(\d+)/g);if(ns)m=Math.max(m,parseInt(ns[ns.length-1]))});
+  return m;
+}
+
+/* ══════════════════════════════════════════
+   RENDER: OFFER CARDS
+══════════════════════════════════════════ */
+function renderOfferCards(items,cid){
+  const on=k=>items[k]&&items[k].active?items[k]:null;
+  const row=(label,price)=>`<div class="inv-row"><div class="inv-name">${label}</div><div class="inv-right"><span class="inv-once-price">${price}</span></div></div>`;
+  let html='';
+
+  const consult=on('consultation');
+  if(consult) html+=`<div class="inv-group">${row(consult.name,'Free')}</div>`;
+
+  const brand=on('brand'), renewal=on('renewal');
+  if(brand||renewal){
+    const tier=brand?brand.name.replace('Branding Kit — ',''):'';
+    html+=`<div class="inv-group">
+      <div class="inv-group-hdr">Branding Kit${tier?' · '+tier:''}</div>
+      ${brand?row('Logo & social media designs',brand.priceRange):''}
+      ${renewal?row('Domain & email',renewal.priceRange):''}
+    </div>`;
+  }
+
+  const web=on('web'), mailbox=on('mailbox');
+  if(web||mailbox){
+    html+=`<div class="inv-group">
+      <div class="inv-group-hdr">Website${web?' · '+web.name:''}</div>
+      ${web?row('Build fee',fmt(web.setupMid)):''}
+      ${web?row('Monthly plan',web.priceRange):''}
+      ${mailbox?row(mailbox.name.replace('Email — ','Email upgrade — '),mailbox.priceRange):''}
+    </div>`;
+  }
+  return html;
+}
+
+function renderTotalBar(items,cid){
+  const ot=onetimeTotal(items);
+  const mt=monthlyTotal(items);
+  const at=annualItems(items).reduce((s,x)=>s+x.price,0);
+  const subs=subscriptionItems(items);
+
+  // "Due on signing" — one-time fees + build fee midpoint
+  const buildMid=subs.reduce((s,x)=>s+(x.setupMid||0),0);
+  const dueTotal=ot+buildMid;
+  const dueTodayVal=dueTotal===0?'Free':fmt(dueTotal);
+
+  return `<div class="inv-totals inv-totals-card">
+    <div class="inv-group-hdr" style="margin-bottom:6px">What you'll pay</div>
+    <div class="inv-divider"></div>
+    <div class="inv-total-row">
+      <span class="inv-total-lbl">Due on signing</span>
+      <span class="inv-total-val accent">${dueTodayVal}</span>
+    </div>
+    ${mt>0?`<div class="inv-total-row" style="margin-top:2px">
+      <span class="inv-total-lbl">Then monthly</span>
+      <span class="inv-total-val gold">${fmt(mt)}/mo</span>
+    </div>`:''}
+    ${at>0?`<div class="inv-total-row" style="margin-top:2px">
+      <span class="inv-total-lbl">Renewed annually</span>
+      <span class="inv-total-val renew">${fmt(at)}/yr</span>
+    </div>`:''}
+  </div>`;
+}
+
+function renderOfferSection(items,cid,onProceed,onRestart){
+  const div=document.createElement('div');
+  div.className='inv-wrap';
+  div.innerHTML=`
+    <div class="inv-header">
+      <span class="inv-title">Your custom offer</span>
+    </div>
+    <div id="${cid}-cards">${renderOfferCards(items,cid)}</div>
+    <div id="${cid}-total-bar">${renderTotalBar(items,cid)}</div>
+    <p class="inv-note">Build fee is a fixed price confirmed after a brief project review. Domain & email renew annually at the rate shown.</p>
+    <button class="cta-p" id="${cid}-gof">I'm in — let's get started →</button>
+    <button class="cta-s" id="${cid}-rst">Start over</button>`;
+
+  div.querySelector(`#${cid}-gof`).addEventListener('click',onProceed);
+  div.querySelector(`#${cid}-rst`).addEventListener('click',onRestart);
+  return div;
+}
+
+/* ══════════════════════════════════════════
+   RENDER: FORM + CONTRACT
+══════════════════════════════════════════ */
+function renderForm(items,onBack,containerEl){
+  const ot=onetimeTotal(items);
+  const mt=monthlyTotal(items);
+  const at=annualItems(items).reduce((s,x)=>s+x.price,0);
+  const freeList=freeItems(items);
+  const oList=onetimeItems(items);
+  const sList=subscriptionItems(items);
+  const mList=monthlyItems(items);
+  const aList=annualItems(items);
+
+  let recapHTML='';
+  if(freeList.length){recapHTML+=`<div class="recap-section-hdr">Free services</div>`;freeList.forEach(x=>recapHTML+=`<div class="recap-row free"><span>${x.name}</span><span>Free</span></div>`);}
+  if(oList.length){recapHTML+=`<div class="recap-section-hdr">One-time fees</div>`;oList.forEach(x=>recapHTML+=`<div class="recap-row"><span>${x.name}</span><span>${x.priceRange}</span></div>`);}
+  if(sList.length){recapHTML+=`<div class="recap-section-hdr">Website — build fee + subscription</div>`;sList.forEach(x=>recapHTML+=`<div class="recap-row"><span>${x.name}</span><span>${x.setupRange} + ${x.priceRange}</span></div>`);}
+  if(mList.length){recapHTML+=`<div class="recap-section-hdr">Monthly services</div>`;mList.forEach(x=>recapHTML+=`<div class="recap-row monthly"><span>${x.name}</span><span>${x.priceRange}</span></div>`);}
+  if(aList.length){recapHTML+=`<div class="recap-section-hdr">Annual renewals</div>`;aList.forEach(x=>recapHTML+=`<div class="recap-row"><span>${x.name}</span><span>${x.priceRange}</span></div>`);}
+
+  let totalHTML='';
+  if(ot>0)   totalHTML+=`<div class="recap-total"><span>One-time total</span><span style="color:var(--accent)">${fmt(ot)}</span></div>`;
+  if(mt>0)   totalHTML+=`<div class="recap-total" style="margin-top:4px"><span>Monthly total</span><span style="color:var(--gold)">${fmt(mt)}/mo</span></div>`;
+  if(at>0)   totalHTML+=`<div class="recap-total" style="margin-top:4px"><span>Annual renewal</span><span>${fmt(at)}/yr</span></div>`;
+  if(!ot&&!mt&&!at) totalHTML+=`<div class="recap-total"><span>Total</span><span>Free</span></div>`;
+
+  containerEl.innerHTML=`<div class="form-box">
+    <h2>Let's make it official</h2>
+    <div class="form-sub">Add your details to generate your service agreement. You'll review it on the next screen.</div>
+    <div class="inv-wrap" style="margin-bottom:1.5rem">${renderOfferCards(items,'f')}${renderTotalBar(items,'f')}</div>
+    <div class="frow"><div class="fld"><label>First name *</label><input type="text" id="f-first"></div><div class="fld"><label>Last name *</label><input type="text" id="f-last"></div></div>
+    <div class="frow"><div class="fld"><label>Email address *</label><input type="email" id="f-email"></div><div class="fld"><label>Phone number</label><input type="tel" id="f-phone"></div></div>
+    <div class="frow"><div class="fld"><label>Company / Brand name *</label><input type="text" id="f-company"></div><div class="fld"><label>Industry *</label><select id="f-industry"><option value="">Select…</option><option>Retail & e-commerce</option><option>Food & beverage</option><option>Healthcare & wellness</option><option>Technology & software</option><option>Real estate</option><option>Professional services</option><option>Education</option><option>Non-profit</option><option>Fashion & beauty</option><option>Hospitality & travel</option><option>Finance & insurance</option><option>Other</option></select></div></div>
+    <div class="frow full"><div class="fld"><label>How did you hear about us?</label><select id="f-source"><option value="">Select…</option><option>Referral from a client</option><option>Google / search engine</option><option>Social media</option><option>LinkedIn</option><option>Portfolio / Behance</option><option>Other</option></select></div></div>
+    <div class="frow full"><div class="fld"><label>Anything else we should know?</label><textarea id="f-notes" placeholder="Context about your brand, audience, goals, or any specific requirements…"></textarea></div></div>
+    <div class="form-actions"><button class="back-btn" id="frm-back">← Back to offer</button><button class="sub-btn" id="frm-submit">Submit & view contract →</button></div>
+  </div>`;
+
+  document.getElementById('frm-back').addEventListener('click',onBack);
+  document.getElementById('frm-submit').addEventListener('click',async()=>{
+    const req=['f-first','f-last','f-email','f-company','f-industry'];
+    let valid=true;
+    req.forEach(id=>{const el=document.getElementById(id);if(!el.value.trim()){el.style.borderColor='var(--red)';valid=false}else el.style.borderColor=''});
+    if(!valid)return;
+    const client={firstName:document.getElementById('f-first').value.trim(),lastName:document.getElementById('f-last').value.trim(),email:document.getElementById('f-email').value.trim(),phone:document.getElementById('f-phone').value.trim(),company:document.getElementById('f-company').value.trim(),industry:document.getElementById('f-industry').value,source:document.getElementById('f-source').value,notes:document.getElementById('f-notes').value.trim()};
+    const serviceList=activeOf(items).map(x=>`${x.name}: ${x.priceRange}`).join('\n');
+    try{await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'ba5c4146-9970-4290-a5bb-f7c7c468516f',subject:`New inquiry — ${client.firstName} ${client.lastName} (${client.company})`,from_name:`${client.firstName} ${client.lastName}`,email:client.email,message:`Client: ${client.firstName} ${client.lastName}\nCompany: ${client.company}\nIndustry: ${client.industry}\nEmail: ${client.email}\nPhone: ${client.phone||'—'}\nSource: ${client.source||'—'}\n\nServices:\n${serviceList}\n\nNotes: ${client.notes||'—'}`})})}catch(e){console.warn(e)}
+    renderContract(containerEl,client,items);
+  });
+}
+
+function renderContract(containerEl,client,items){
+  const today=new Date();
+  const todayEN=today.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const todayFR=today.toLocaleDateString('fr-CA',{year:'numeric',month:'long',day:'numeric'});
+  const todayISO=today.toLocaleDateString('en-CA');
+  const COMPANY='RANY THYS';
+
+  const ot=onetimeTotal(items);
+  const mt=monthlyTotal(items);
+  const at=annualItems(items).reduce((s,x)=>s+x.price,0);
+  const oList=onetimeItems(items);
+  const sList=subscriptionItems(items);
+  const mList=monthlyItems(items);
+  const aList=annualItems(items);
+  const fList=freeItems(items);
+  const buildTotal=sList.reduce((t,x)=>t+(x.setupMid||0),0);
+  const dueOnSigning=ot+buildTotal;
+  const dueParts=lang=>[...oList.map(x=>`${x.name} (${fmt(x.price)})`),...sList.map(x=>`${x.name} ${lang==='en'?'build fee':'frais de création'} (${fmt(x.setupMid)})`)].join(lang==='en'?' and ':' et ');
+
+  // Build service rows for contract
+  function buildRows(lang){
+    let rows='';
+    const th=(a,b,c)=>`<tr style="background:#F2F2F2"><th style="padding:8px 12px;text-align:left;font-weight:500">${a}</th><th style="padding:8px 12px;text-align:left;font-weight:500">${b}</th><th style="padding:8px 12px;text-align:left;font-weight:500">${c}</th></tr>`;
+    const td=(name,price,tl)=>`<tr><td style="padding:8px 12px;border-bottom:1px solid #eee">${name}</td><td style="padding:8px 12px;border-bottom:1px solid #eee;white-space:nowrap">${price}</td><td style="padding:8px 12px;border-bottom:1px solid #eee">${tl}</td></tr>`;
+    const tbl=(header,rows,footer)=>`<table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:1.5rem"><thead>${header}</thead><tbody>${rows}</tbody>${footer?`<tfoot>${footer}</tfoot>`:''}</table>`;
+
+    if(fList.length){
+      const r=fList.map(x=>td(x.name,lang==='en'?'Free':'Gratuit',lang==='en'?x.timeline:x.timeline)).join('');
+      rows+=`<p style="font-size:13px;font-weight:500;color:#E8001A;margin-bottom:6px">${lang==='en'?'Free Services':'Services gratuits'}</p>${tbl(th(lang==='en'?'Service':'Service',lang==='en'?'Price':'Prix',lang==='en'?'Timeline':'Délai'),r,'')}`;
+    }
+    if(oList.length){
+      const r=oList.map(x=>td(x.name,x.priceRange,x.timeline)).join('');
+      const tot=`<tr style="background:#FFF0F0"><td style="padding:8px 12px;font-weight:500">${lang==='en'?'One-time total':'Total unique'}</td><td style="padding:8px 12px;font-weight:500;color:#E8001A">${fmt(ot)}</td><td></td></tr>`;
+      rows+=`<p style="font-size:13px;font-weight:500;color:#E8001A;margin-bottom:6px">${lang==='en'?'One-Time Services':'Services uniques'}</p>${tbl(th(lang==='en'?'Service':'Service',lang==='en'?'Investment':'Investissement',lang==='en'?'Timeline':'Délai'),r,'')}`;
+    }
+    if(sList.length){
+      const r=sList.map(x=>td(x.name,`${fmt(x.setupMid)} ${lang==='en'?'build fee':'frais de création'} + ${x.priceRange}`,x.timeline)).join('');
+      rows+=`<p style="font-size:13px;font-weight:500;color:#E8001A;margin-bottom:6px">${lang==='en'?'Website Subscription':'Abonnement site web'}</p>${tbl(th(lang==='en'?'Plan':'Plan',lang==='en'?'Investment':'Investissement',lang==='en'?'Launch timeline':'Délai de lancement'),r,'')}`;
+    }
+    if(mList.length){
+      const r=mList.map(x=>td(x.name,x.priceRange,x.timeline)).join('');
+      const tot=`<tr style="background:#fef3c7"><td style="padding:8px 12px;font-weight:500">${lang==='en'?'Monthly total':'Total mensuel'}</td><td style="padding:8px 12px;font-weight:500;color:#d97706">${fmt(mt)}/mo</td><td></td></tr>`;
+      rows+=`<p style="font-size:13px;font-weight:500;color:#d97706;margin-bottom:6px">${lang==='en'?'Monthly Services':'Services mensuels'}</p>${tbl(th(lang==='en'?'Service':'Service',lang==='en'?'Monthly fee':'Frais mensuels',lang==='en'?'Delivery':'Livraison'),r,tot)}`;
+    }
+    if(aList.length){
+      const r=aList.map(x=>td(x.name,x.priceRange,x.timeline)).join('');
+      rows+=`<p style="font-size:13px;font-weight:500;color:var(--txt-2);margin-bottom:6px">${lang==='en'?'Annual Renewals':'Renouvellements annuels'}</p>${tbl(th(lang==='en'?'Service':'Service',lang==='en'?'Annual fee':'Frais annuels',lang==='en'?'Billing':'Facturation'),r,'')}`;
+    }
+    return rows;
+  }
+
+  function paymentEN(){
+    let html=`<p style="font-size:14px;margin-bottom:.75rem">The Client agrees to the following payment schedule:</p>`;
+    if(dueOnSigning>0){html+=`<p style="font-size:14px;margin-bottom:.5rem"><strong>Due upon signing: ${fmt(dueOnSigning)}</strong>, paid in full when this agreement is signed. This covers ${dueParts('en')}. Work begins once this payment is received.</p>`;}
+    if(mt>0){html+=`<p style="font-size:14px;margin-bottom:.5rem"><strong>Monthly subscription (${fmt(mt)}/mo):</strong> billing begins on the website or service launch date and continues monthly thereafter. Cancel anytime, no penalties.</p>`;}
+    if(at>0){html+=`<p style="font-size:14px;margin-bottom:.5rem"><strong>Annual renewal (${fmt(at)}/yr):</strong> covers the domain and professional email, billed once a year starting on the launch date.</p>`;}
+    html+=`<p style="font-size:14px">Payments accepted via bank transfer or any method agreed in writing. Late payments beyond 7 days may result in a pause of work.</p>`;
+    return html;
+  }
+
+  function paymentFR(){
+    let html=`<p style="font-size:14px;margin-bottom:.75rem">Le Client accepte le calendrier de paiement suivant :</p>`;
+    if(dueOnSigning>0){html+=`<p style="font-size:14px;margin-bottom:.5rem"><strong>Dû à la signature : ${fmt(dueOnSigning)}</strong>, payé en totalité à la signature du présent contrat. Ce montant couvre ${dueParts('fr')}. Les travaux commencent dès réception de ce paiement.</p>`;}
+    if(mt>0){html+=`<p style="font-size:14px;margin-bottom:.5rem"><strong>Abonnement mensuel (${fmt(mt)}/mois) :</strong> la facturation commence à la date de lancement du site ou du service et se poursuit mensuellement. Annulation possible à tout moment, sans pénalité.</p>`;}
+    if(at>0){html+=`<p style="font-size:14px;margin-bottom:.5rem"><strong>Renouvellement annuel (${fmt(at)}/an) :</strong> couvre le nom de domaine et la messagerie professionnelle, facturé une fois par an à partir de la date de lancement.</p>`;}
+    html+=`<p style="font-size:14px">Les paiements sont acceptés par virement bancaire ou tout autre moyen convenu par écrit. Les retards au-delà de 7 jours peuvent entraîner une pause des travaux.</p>`;
+    return html;
+  }
+
+  function contractBody(lang){
+    const en=lang==='en';
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid #E8001A">
+        <div><div style="font-size:22px;font-weight:500;color:#E8001A">${en?'Service Agreement':'Contrat de services'}</div></div>
+        <div style="text-align:right;font-size:13px;color:#6b6b67">${en?todayEN:todayFR}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+        <div style="background:#F2F2F2;border-radius:8px;padding:1rem">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:#a0a09c;margin-bottom:8px">${en?'Service Provider':'Prestataire'}</div>
+          <div style="font-weight:500">${COMPANY}</div>
+        </div>
+        <div style="background:#F2F2F2;border-radius:8px;padding:1rem">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:#a0a09c;margin-bottom:8px">Client</div>
+          <div style="font-weight:500">${client.firstName} ${client.lastName}</div>
+          <div style="font-size:13px;color:#6b6b67">${client.company}</div>
+          <div style="font-size:13px;color:#6b6b67">${client.email}</div>
+          ${client.phone?`<div style="font-size:13px;color:#6b6b67">${client.phone}</div>`:''}
+        </div>
+      </div>
+
+      <div style="font-size:16px;font-weight:500;color:#E8001A;margin-bottom:1rem;padding-bottom:6px;border-bottom:1px solid #e0e0e0">1. ${en?'Scope of Work':'Portée des travaux'}</div>
+      <p style="font-size:14px;margin-bottom:1rem">${en?`${COMPANY} agrees to provide the following services to the Client. All deliverables will be completed within the estimated timelines from the project kickoff date, contingent on timely receipt of materials and feedback from the Client.`:`${COMPANY} s'engage à fournir les services suivants au Client. Tous les livrables seront complétés dans les délais estimés à partir de la date de démarrage du projet, sous réserve de la réception dans les délais des matériaux et des retours du Client.`}</p>
+      ${buildRows(lang)}
+
+      <div style="font-size:16px;font-weight:500;color:#E8001A;margin-bottom:.75rem;padding-bottom:6px;border-bottom:1px solid #e0e0e0;margin-top:1.5rem">2. ${en?'Payment Terms':'Modalités de paiement'}</div>
+      ${en?paymentEN():paymentFR()}
+
+      <div style="font-size:16px;font-weight:500;color:#E8001A;margin-bottom:.75rem;padding-bottom:6px;border-bottom:1px solid #e0e0e0;margin-top:1.5rem">3. ${en?'Revisions & Approvals':'Révisions et approbations'}</div>
+      <p style="font-size:14px;margin-bottom:1.5rem">${en?'Each deliverable includes up to two (2) rounds of revisions. Additional revisions beyond this scope will be quoted separately. The Client agrees to provide feedback within five (5) business days of receiving a deliverable. Silence beyond this period may be interpreted as approval.':'Chaque livrable comprend jusqu\'à deux (2) rondes de révisions. Les révisions supplémentaires seront devisées séparément. Le Client s\'engage à fournir ses retours dans les cinq (5) jours ouvrables suivant la réception d\'un livrable. L\'absence de réponse pourra être interprétée comme une approbation.'}</p>
+
+      <div style="font-size:16px;font-weight:500;color:#E8001A;margin-bottom:.75rem;padding-bottom:6px;border-bottom:1px solid #e0e0e0">4. ${en?'Intellectual Property':'Propriété intellectuelle'}</div>
+      <p style="font-size:14px;margin-bottom:1.5rem">${en?`Upon receipt of full payment, the Client receives full ownership of all final deliverables. ${COMPANY} retains the right to display the work in its portfolio unless otherwise agreed in writing.`:`Dès réception du paiement intégral, le Client obtient la pleine propriété de tous les livrables finaux. ${COMPANY} se réserve le droit de présenter les travaux dans son portfolio, sauf accord écrit contraire.`}</p>
+
+      <div style="font-size:16px;font-weight:500;color:#E8001A;margin-bottom:.75rem;padding-bottom:6px;border-bottom:1px solid #e0e0e0">5. ${en?'Cancellation':'Résiliation'}</div>
+      <p style="font-size:14px">${en?'Either party may terminate this agreement with 7 days written notice. In the event of Client cancellation, the payment made on signing is non-refundable. Monthly subscriptions may be cancelled at any time with no penalty — service continues until the end of the current billing period.':'L\'une ou l\'autre des parties peut résilier le présent contrat moyennant un préavis écrit de 7 jours. En cas d\'annulation par le Client, le paiement effectué à la signature est non remboursable. Les abonnements mensuels peuvent être annulés à tout moment sans pénalité — le service se poursuit jusqu\'à la fin de la période de facturation en cours.'}</p>`;
+  }
+
+  function sigBlock(lang){
+    const en=lang==='en';
+    return `<div id="sig-block" style="margin-top:2rem;padding-top:1.5rem;border-top:2px solid #E8001A">
+      <div style="font-size:16px;font-weight:500;color:#E8001A;margin-bottom:.5rem">Signature</div>
+      <p style="font-size:13px;color:#6b6b67;margin-bottom:1rem">${en?'By signing below, the Client agrees to all terms of this agreement.':'En signant ci-dessous, le Client accepte toutes les conditions du présent contrat.'}</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+        <div>
+          <div style="font-size:12px;color:#a0a09c;margin-bottom:6px;font-weight:500;text-transform:uppercase;letter-spacing:.06em">${en?'Client signature':'Signature du client'}</div>
+          <canvas id="sig-canvas" width="280" height="100" style="border:1px solid #ddd;border-radius:8px;cursor:crosshair;background:#fafafa;display:block;touch-action:none"></canvas>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+            <button id="sig-clear" style="font-size:12px;padding:4px 12px;border:0.5px solid #ddd;border-radius:6px;background:transparent;cursor:pointer;font-family:var(--font);color:#6b6b67">${en?'Clear':'Effacer'}</button>
+            <span id="sig-status" style="font-size:12px;color:#a0a09c">${en?'Sign above to enable download':'Signez ci-dessus pour activer le téléchargement'}</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:#a0a09c;margin-bottom:6px;font-weight:500;text-transform:uppercase;letter-spacing:.06em">${en?'Service provider':'Prestataire'}</div>
+          <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#fafafa;height:100px;display:flex;align-items:center">
+            <div style="font-size:18px;font-style:italic;color:#E8001A;font-family:Georgia,serif">${COMPANY}</div>
+          </div>
+          <div style="font-size:12px;color:#a0a09c;margin-top:8px">${client.firstName} ${client.lastName} | ${en?todayEN:todayFR}</div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;text-align:center">
+        <button id="btn-download-pdf" style="padding:11px 28px;background:#E8001A;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;opacity:.4;pointer-events:none" disabled>${en?'⬇ Download signed contract':'⬇ Télécharger le contrat signé'}</button>
+      </div>
+    </div>`;
+  }
+
+  containerEl.innerHTML=`<div id="contract-shell" style="font-family:'Inter',sans-serif">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.5rem">
+      <span style="font-size:13px;color:var(--txt-2)">Contract language / Langue du contrat :</span>
+      <button id="lang-en" style="padding:6px 16px;border-radius:6px;border:1.5px solid #E8001A;background:#E8001A;color:#fff;font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer">English</button>
+      <button id="lang-fr" style="padding:6px 16px;border-radius:6px;border:1.5px solid var(--bdr-2);background:#fff;color:var(--txt-2);font-size:13px;font-family:var(--font);cursor:pointer">Français</button>
+    </div>
+    <div id="contract-doc" style="background:#fff;border:1px solid #ddd;border-radius:12px;padding:3rem;max-width:720px;margin:0 auto;line-height:1.7;color:#1a1a18">
+      <div id="contract-body">${contractBody('en')}</div>
+      <div id="sig-block">${sigBlock('en')}</div>
+    </div>
+    <div style="text-align:center;margin-top:1rem;font-size:12px;color:var(--txt-3)">
+      ✓ ${client.firstName}, we've received your agreement. We'll contact you within 3 business days to schedule your project review and next steps.
+    </div>
+  </div>`;
+
+  let currentLang='en';
+
+  function switchLang(lang){
+    currentLang=lang;
+    document.getElementById('contract-body').innerHTML=contractBody(lang);
+    document.getElementById('sig-block').remove();
+    const sb=document.createElement('div');
+    sb.id='sig-block';sb.innerHTML=sigBlock(lang);
+    document.getElementById('contract-doc').appendChild(sb);
+    document.getElementById('lang-en').style.cssText=`padding:6px 16px;border-radius:6px;font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;border:1.5px solid ${lang==='en'?'#E8001A':'var(--bdr-2)'};background:${lang==='en'?'#E8001A':'#fff'};color:${lang==='en'?'#fff':'var(--txt-2)'}`;
+    document.getElementById('lang-fr').style.cssText=`padding:6px 16px;border-radius:6px;font-size:13px;font-family:var(--font);cursor:pointer;border:1.5px solid ${lang==='fr'?'#E8001A':'var(--bdr-2)'};background:${lang==='fr'?'#E8001A':'#fff'};color:${lang==='fr'?'#fff':'var(--txt-2)'}`;
+    initCanvas();
+  }
+
+  document.getElementById('lang-en').addEventListener('click',()=>switchLang('en'));
+  document.getElementById('lang-fr').addEventListener('click',()=>switchLang('fr'));
+
+  function initCanvas(){
+    const canvas=document.getElementById('sig-canvas');if(!canvas)return;
+    const ctx=canvas.getContext('2d');let drawing=false,hasSig=false;
+    ctx.strokeStyle='#E8001A';ctx.lineWidth=2;ctx.lineCap='round';ctx.lineJoin='round';
+    function gp(e){const r=canvas.getBoundingClientRect();const s=e.touches?e.touches[0]:e;return{x:s.clientX-r.left,y:s.clientY-r.top}}
+    canvas.addEventListener('mousedown',e=>{drawing=true;const p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y)});
+    canvas.addEventListener('mousemove',e=>{if(!drawing)return;const p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();hasSig=true;upd()});
+    canvas.addEventListener('mouseup',()=>drawing=false);canvas.addEventListener('mouseleave',()=>drawing=false);
+    canvas.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;const p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y)},{passive:false});
+    canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;const p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();hasSig=true;upd()},{passive:false});
+    canvas.addEventListener('touchend',()=>drawing=false);
+    document.getElementById('sig-clear').addEventListener('click',()=>{ctx.clearRect(0,0,canvas.width,canvas.height);hasSig=false;upd()});
+    function upd(){
+      const btn=document.getElementById('btn-download-pdf'),st=document.getElementById('sig-status');
+      if(hasSig){btn.disabled=false;btn.style.opacity='1';btn.style.pointerEvents='auto';st.textContent=currentLang==='en'?'✓ Signature captured':'✓ Signature capturée';st.style.color='var(--green)'}
+      else{btn.disabled=true;btn.style.opacity='.4';btn.style.pointerEvents='none';st.textContent=currentLang==='en'?'Sign above to enable download':'Signez ci-dessus pour activer le téléchargement';st.style.color='#a0a09c'}
+    }
+    document.getElementById('btn-download-pdf').addEventListener('click',()=>{
+      const sigImg=document.createElement('img');sigImg.src=canvas.toDataURL();sigImg.style.cssText='width:280px;height:100px;display:block;border:1px solid #ddd;border-radius:8px';
+      canvas.parentNode.replaceChild(sigImg,canvas);
+      const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+      s.onload=()=>{
+        const fname=currentLang==='en'?`Service_Agreement_${client.lastName}_${todayISO}.pdf`:`Contrat_Services_${client.lastName}_${todayISO}.pdf`;
+        html2pdf().set({margin:10,filename:fname,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}}).from(document.getElementById('contract-doc')).save().then(()=>sigImg.parentNode.replaceChild(canvas,sigImg));
+      };
+      document.head.appendChild(s);
+    });
+  }
+  initCanvas();
+}
+
+/* ══════════════════════════════════════════
+   MODE PICKER
+══════════════════════════════════════════ */
+function goToModeScreen(){
+  document.getElementById('steps-screen').style.display='none';
+  document.getElementById('chat-screen').style.display='none';
+  document.getElementById('mode-screen').style.display='block';
+  document.querySelector('.hdr p').textContent='Choose how you\'d like to get started.';
+  // reset chat
+  document.getElementById('msgs').innerHTML='';
+  document.getElementById('chat-opts').innerHTML='';
+  document.getElementById('chat-offer').innerHTML='';
+  document.getElementById('chat-form').innerHTML='';
+  document.getElementById('prog-fill').style.width='0%';
+  document.getElementById('prog-lbl').textContent='Let\'s get started…';
+  
+}
+
+function _initWidgetListeners(){
+  const pickSteps=document.getElementById('pick-steps');
+  const pickChat=document.getElementById('pick-chat');
+  const stepsBack=document.getElementById('steps-back-to-modes');
+  const chatBack=document.getElementById('chat-back-to-modes');
+  const consultBtn=document.getElementById('consult-banner-btn');
+  if(pickSteps) pickSteps.addEventListener('click',()=>{
+    document.getElementById('mode-screen').style.display='none';
+    document.getElementById('steps-screen').style.display='block';
+    document.querySelector('.hdr p').textContent='Select your services and get an instant quote.';
+    document.getElementById('services').scrollIntoView({behavior:'smooth',block:'start'});
+    startSteps();
+  });
+  if(pickChat) pickChat.addEventListener('click',()=>{
+    document.getElementById('mode-screen').style.display='none';
+    document.getElementById('chat-screen').style.display='block';
+    document.querySelector('.hdr p').textContent='Answer a few questions and we\'ll build a tailored offer.';
+    document.getElementById('services').scrollIntoView({behavior:'smooth',block:'start'});
+    startChat();
+  });
+  if(stepsBack) stepsBack.addEventListener('click',goToModeScreen);
+  if(chatBack) chatBack.addEventListener('click',goToModeScreen);
+  if(consultBtn) consultBtn.addEventListener('click',showConsultationForm);
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',_initWidgetListeners);
+}else{
+  _initWidgetListeners();
+}
+
+function showConsultationForm(){
+  document.getElementById('consult-banner').style.display='none';
+  document.getElementById('mode-screen').style.display='none';
+  document.getElementById('steps-screen').style.display='none';
+  document.getElementById('chat-screen').style.display='none';
+  document.querySelector('.hdr p').textContent='Tell us a bit about your project and we\'ll be in touch within 72 hours.';
+  // Inject consultation form
+  let formDiv=document.getElementById('consult-form-screen');
+  if(!formDiv){
+    formDiv=document.createElement('div');
+    formDiv.id='consult-form-screen';
+    document.querySelector('.page').insertBefore(formDiv,document.getElementById('steps-screen'));
+  }
+  formDiv.style.display='block';
+  formDiv.innerHTML=`
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:2rem;max-width:520px;margin:0 auto">
+      <div style="font-size:1.05rem;font-weight:700;color:var(--txt);margin-bottom:0.25rem">Book your free call</div>
+      <div style="font-size:13px;color:var(--txt-2);margin-bottom:1.5rem">30 minutes, no commitment. We'll listen, then share honest recommendations.</div>
+      <div style="display:flex;flex-direction:column;gap:0.85rem">
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--txt-2);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Your name</label>
+          <input id="cf-name" type="text" placeholder="Your full name" style="width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;box-sizing:border-box" />
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--txt-2);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Organization <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--txt-2);opacity:.7">(optional)</span></label>
+          <input id="cf-org" type="text" placeholder="Your company or project name" style="width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;box-sizing:border-box" />
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--txt-2);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Email address</label>
+          <input id="cf-email" type="email" placeholder="your@email.com" style="width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;box-sizing:border-box" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem">
+          <div>
+            <label style="font-size:12px;font-weight:600;color:var(--txt-2);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Phone number</label>
+            <input id="cf-phone" type="tel" placeholder="+1 (555) 000-0000" style="width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;box-sizing:border-box" />
+          </div>
+          <div>
+            <label style="font-size:12px;font-weight:600;color:var(--txt-2);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Best time to call</label>
+            <select id="cf-calltime" style="width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;background:#f5f5f5;box-sizing:border-box">
+              <option value="" disabled selected>Select a time</option>
+              <option>Morning (8am – 12pm)</option>
+              <option>Afternoon (12pm – 5pm)</option>
+              <option>Evening (5pm – 8pm)</option>
+              <option>Anytime</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--txt-2);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">What do you need help with?</label>
+          <textarea id="cf-note" rows="3" placeholder="Tell us about your project, goals, or questions…" style="width:100%;padding:0.6rem 0.75rem;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--txt);outline:none;resize:vertical;box-sizing:border-box"></textarea>
+        </div>
+        <button id="cf-submit" style="width:100%;padding:0.75rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.02em">Request a free call</button>
+        <div id="cf-msg" style="display:none;text-align:center;font-size:13px;color:var(--txt-2);padding:0.5rem 0"></div>
+      </div>
+    </div>
+    <button class="back-to-modes" id="consult-back-to-modes" style="margin-top:1.25rem">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>`;
+  document.getElementById('cf-submit').addEventListener('click',async()=>{
+    const name=document.getElementById('cf-name').value.trim();
+    const org=document.getElementById('cf-org').value.trim();
+    const email=document.getElementById('cf-email').value.trim();
+    const phone=document.getElementById('cf-phone').value.trim();
+    const calltime=document.getElementById('cf-calltime').value;
+    const note=document.getElementById('cf-note').value.trim();
+    const msg=document.getElementById('cf-msg');
+    if(!name||!email){msg.style.display='block';msg.style.color='#c00';msg.textContent='Please enter your name and email.';return;}
+    const btn=document.getElementById('cf-submit');
+    btn.disabled=true;btn.textContent='Sending…';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          access_key:'ba5c4146-9970-4290-a5bb-f7c7c468516f',
+          subject:'Free Consultation Request — '+name,
+          name,email,
+          organization:org||'—',
+          phone:phone||'—',
+          best_time_to_call:calltime||'—',
+          message:note||'—',
+          from_name:'Rany Thys Portfolio'
+        })
+      });
+      const data=await res.json();
+      if(data.success){
+        formDiv.innerHTML=`
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:2.5rem 2rem;max-width:520px;margin:0 auto;text-align:center">
+            <div style="width:52px;height:52px;border-radius:50%;background:rgba(232,0,26,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8001A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--txt);margin-bottom:0.5rem">We'll be in touch soon!</div>
+            <div style="font-size:14px;color:var(--txt-2);line-height:1.6">Thanks, <strong>${name}</strong>. We'll reach out to <strong>${email}</strong> within 72 hours to schedule your free call.</div>
+          </div>`;
+      }else{
+        btn.disabled=false;btn.textContent='Request a free call';
+        msg.style.display='block';msg.style.color='#c00';msg.textContent='Something went wrong. Please try again.';
+      }
+    }catch(e){
+      btn.disabled=false;btn.textContent='Request a free call';
+      msg.style.display='block';msg.style.color='#c00';msg.textContent='Network error. Please try again.';
+    }
+  });
+  document.getElementById('consult-back-to-modes').addEventListener('click',()=>{
+    formDiv.style.display='none';
+    document.getElementById('consult-banner').style.display='flex';
+    document.getElementById('mode-screen').style.display='block';
+    document.querySelector('.hdr p').textContent='Choose how you\'d like to get started.';
+  });
+  
+}
+
+/* ══════════════════════════════════════════
+   STEPS MODE
+══════════════════════════════════════════ */
+let sPrimary=null,sSelectedCats=[],sAnswers={},sQueue=[],sQIndex=0,sOfferItems={};
+
+function sNextQ(){return sQueue.find(q=>sAnswers[q.id]===undefined&&(!q.condition||q.condition(sAnswers)))}
+function sDoneCount(){return sQueue.filter(q=>sAnswers[q.id]!==undefined&&(!q.condition||q.condition(sAnswers))).length}
+function sTotalCount(){return sQueue.filter(q=>!q.condition||q.condition(sAnswers)).length}
+
+function renderSBar(){
+  const total=Math.min(1+sTotalCount()+1+1,8);// primary + questions + addons + offer, capped
+  const cur=sQIndex===-2?1:sQIndex===-3?2+sDoneCount():sQIndex===-1?total:2+sDoneCount();
+  let html='<div class="steps-bar">';
+  for(let i=1;i<=total;i++){const done=i<cur,active=i===cur;html+=`<div class="step-item${done?' done':active?' active':''}"><div class="step-dot">${done?'✓':i}</div></div>${i<total?`<div class="step-line${done?' done':''}"></div>`:''}`}
+  html+='</div>';document.getElementById('steps-bar').innerHTML=html;
+}
+
+function renderSAnswered(){
+  const el=document.getElementById('steps-answered');
+  if(!sPrimary){el.innerHTML='';return}
+  let html='<div class="answered-steps">';
+  html+=`<div class="answered-row"><div><div class="answered-q">Primary service</div><div class="answered-a">${CATS[sPrimary].label}</div></div><button class="edit-btn" onclick="startSteps()">Edit</button></div>`;
+  const addons=sSelectedCats.filter(c=>c!==sPrimary);
+  if(sQIndex>=0||sQIndex===-1){
+    /* add-ons step removed — services selected upfront */
+  }
+  sQueue.filter(q=>sAnswers[q.id]!==undefined&&(!q.condition||q.condition(sAnswers))).forEach((q,i)=>{
+    const val=sAnswers[q.id];
+    const disp=Array.isArray(val)?val.map(v=>{const o=q.opts.find(o=>o.val===v);return o?o.label:v}).join(', '):(()=>{const o=q.opts.find(o=>o.val===val);return o?o.label:val})();
+    const idx=sQueue.indexOf(q);
+    html+=`<div class="answered-row"><div><div class="answered-q">${q.q}</div><div class="answered-a">${disp}</div></div><button class="edit-btn" onclick="sEditQ(${idx})">Edit</button></div>`;
+  });
+  html+='</div>';el.innerHTML=html;
+}
+
+function startSteps(){sPrimary=null;sSelectedCats=[];sAnswers={};sQueue=[];sQIndex=-2;sOfferItems={};showSPrimary()}
+
+function showSBrandCheck(selectedServices){
+  // Only ask if brand is not already selected
+  if(selectedServices.includes('brand')){
+    // Already chose brand — skip check
+    sPrimary=selectedServices[0];sSelectedCats=[...selectedServices];sAnswers={};
+    sQueue=[];sSelectedCats.forEach(c=>(FOLLOW_UPS[c]||[]).forEach(q=>sQueue.push(q)));
+    sQueue.push(...SHARED_QS);sQIndex=0;
+    const nq=sNextQ();if(nq)showSCurrentQ();else showSOffer();
+    return;
+  }
+  document.getElementById('steps-current').innerHTML=`
+    <div class="section-q">Quick question before we build your offer</div>
+    <div style="font-size:13px;color:var(--txt-2);margin-bottom:1.5rem;margin-top:-8px">This helps us make sure nothing important is missing.</div>
+    <div class="brand-check-card" id="brand-check-card">
+      <div class="brand-check-q">Do you already have a logo, brand colors, and visual identity?</div>
+      <div class="brand-check-opts">
+        <button class="brand-check-btn" id="bc-yes">
+          <span class="bc-icon">✓</span>
+          <div><strong>Yes, I have a brand</strong><span>Logo, colors & guidelines are ready to use</span></div>
+        </button>
+        <button class="brand-check-btn" id="bc-no">
+          <span class="bc-icon" style="color:var(--accent)">✗</span>
+          <div><strong>No, I don't have one yet</strong><span>We'll add a Branding Kit to your offer</span></div>
+        </button>
+        <button class="brand-check-btn" id="bc-partial">
+          <span class="bc-icon" style="color:var(--gold)">~</span>
+          <div><strong>I have something, but it needs work</strong><span>We'll recommend the right upgrade</span></div>
+        </button>
+      </div>
+    </div>`;
+  const proceed=(hasBrand)=>{
+    let finalSel=[...selectedServices];
+    if(!hasBrand && !finalSel.includes('brand')){
+      finalSel=['brand',...finalSel]; // prepend brand as first service
+    }
+    sPrimary=finalSel[0];sSelectedCats=[...finalSel];sAnswers={};
+    sQueue=[];sSelectedCats.forEach(c=>(FOLLOW_UPS[c]||[]).forEach(q=>sQueue.push(q)));
+    sQueue.push(...SHARED_QS);sQIndex=0;
+    const nq=sNextQ();if(nq)showSCurrentQ();else showSOffer();
+  };
+  document.getElementById('bc-yes').addEventListener('click',()=>proceed(true));
+  document.getElementById('bc-no').addEventListener('click',()=>proceed(false));
+  document.getElementById('bc-partial').addEventListener('click',()=>proceed(false));
+  
+}
+
+function showSPrimary(){
+  sQIndex=-2;renderSBar();document.getElementById('steps-answered').innerHTML='';
+  let sel=[];
+  document.getElementById('steps-current').innerHTML=`
+    <div class="section-q">What services do you need?</div>
+    <div style="font-size:13px;color:var(--txt-2);margin-bottom:1.25rem;margin-top:-8px">Select everything that applies — you can choose one or more</div>
+    <div class="cat-grid" id="s-primary-grid"></div>
+    <div id="s-primary-actions" style="display:none;margin-top:1.25rem;gap:10px;align-items:center;flex-wrap:wrap">
+      <button class="btn-next" id="s-primary-continue">Continue →</button>
+    </div>`;
+  const grid=document.getElementById('s-primary-grid');
+  const actionsRow=document.getElementById('s-primary-actions');
+  Object.entries(CATS).forEach(([key,cat])=>{
+    const btn=document.createElement('button');
+    btn.className='cat-card';btn.dataset.key=key;
+    btn.innerHTML=`<span class="cat-icon">${ICONS[cat.iconKey]}</span><span class="cat-name">${cat.label}</span><span class="cat-sub">${cat.sub}</span>`;
+    btn.addEventListener('click',()=>{
+      btn.classList.toggle('sel');
+      if(sel.includes(key))sel=sel.filter(x=>x!==key);else sel.push(key);
+      actionsRow.style.display=sel.length?'flex':'none';
+    });
+    grid.appendChild(btn);
+  });
+  document.getElementById('s-primary-continue').addEventListener('click',()=>{
+    if(!sel.length)return;
+    showSBrandCheck(sel);
+  });
+  
+}
+
+function showSAddons(){
+  sQIndex=-3;renderSBar();renderSAnswered();
+  const remaining=Object.entries(CATS).filter(([k])=>k!==sPrimary);
+  const cur=sSelectedCats.filter(c=>c!==sPrimary);let sel=[...cur];
+  let html=`<div class="section-q">Would you like to add anything else?</div>
+    <div style="font-size:13px;color:var(--txt-2);margin-bottom:1.25rem;margin-top:-8px">Optional — select all that apply</div>
+    <div class="cat-grid" id="s-addon-grid">`;
+  remaining.forEach(([key,cat])=>{html+=`<button class="cat-card${sel.includes(key)?' sel':''}" data-key="${key}"><span class="cat-icon">${ICONS[cat.iconKey]}</span><span class="cat-name">${cat.label}</span><span class="cat-sub">${cat.sub}</span></button>`});
+  html+=`</div><div class="btn-row" style="margin-top:.5rem">
+    <button class="btn-back" id="s-addon-back">← Back</button>
+    <button class="btn-next" id="s-addon-skip" style="${sel.length?'display:none':''}">No thanks, continue →</button>
+    <button class="btn-next" id="s-addon-next" style="${sel.length?'':'display:none'}">Continue →</button>
+  </div>`;
+  document.getElementById('steps-current').innerHTML=html;
+  const nxt=document.getElementById('s-addon-next'),skp=document.getElementById('s-addon-skip');
+  document.querySelectorAll('#s-addon-grid .cat-card').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const k=card.dataset.key;card.classList.toggle('sel');
+      if(sel.includes(k))sel=sel.filter(x=>x!==k);else sel.push(k);
+      nxt.style.display=sel.length?'':'none';skp.style.display=sel.length?'none':'';
+    });
+  });
+  const proceed=()=>{
+    sSelectedCats=[sPrimary,...sel];
+    sQueue=[];
+    sSelectedCats.forEach(c=>(FOLLOW_UPS[c]||[]).forEach(q=>sQueue.push(q)));
+    sQueue.push(...SHARED_QS);
+    const nq=sNextQ();if(nq)showSCurrentQ();else showSOffer();
+  };
+  nxt.addEventListener('click',proceed);skp.addEventListener('click',proceed);
+  document.getElementById('s-addon-back').addEventListener('click',()=>{
+    const pfCount=(FOLLOW_UPS[sPrimary]||[]).length;
+    if(pfCount>0){sQIndex=pfCount-1;showSCurrentQ()}else showSPrimary();
+  });
+  
+}
+
+function showSCurrentQ(){
+  const q=sNextQ();if(!q){showSOffer();return}
+  sQIndex=sQueue.indexOf(q);renderSBar();renderSAnswered();
+  const isMulti=!!q.multi;let multiSel=Array.isArray(sAnswers[q.id])?[...sAnswers[q.id]]:[];
+  const optsHtml=q.opts.map(opt=>{
+    const ind=isMulti?`<div class="opt-check"></div>`:`<div class="opt-radio"></div>`;
+    const pt=opt.price?`<span class="opt-price">${opt.price}</span>`:'';
+    const sub=opt.sub?`<div style="font-size:12px;color:var(--txt-3);margin-top:2px">${opt.sub}</div>`:'';
+    return `<button class="opt-step" data-val="${opt.val}">${ind}<div class="opt-label"><div>${opt.label}</div>${sub}</div>${pt}</button>`;
+  }).join('');
+  document.getElementById('steps-current').innerHTML=`
+    <div class="section-q">${q.q}</div>
+    <div class="opts-list-steps" id="s-opts">${optsHtml}</div>
+    <div class="btn-row"><button class="btn-back" id="s-q-back">← Back</button><button class="btn-next" id="s-q-next" disabled>Continue →</button></div>`;
+  const nxt=document.getElementById('s-q-next');
+  if(isMulti){
+    document.querySelectorAll('#s-opts .opt-step').forEach(btn=>{btn.addEventListener('click',()=>{const v=btn.dataset.val;btn.classList.toggle('sel');if(multiSel.includes(v))multiSel=multiSel.filter(x=>x!==v);else multiSel.push(v);nxt.disabled=multiSel.length===0})});
+    nxt.addEventListener('click',()=>{
+      // Clear answers for questions whose conditions may now fail
+      sAnswers[q.id]=multiSel;
+      sQueue.forEach(oq=>{if(oq.condition&&!oq.condition(sAnswers))delete sAnswers[oq.id]});
+      showSCurrentQ();
+    });
+  } else {
+    document.querySelectorAll('#s-opts .opt-step').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#s-opts .opt-step').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');nxt.disabled=false;nxt.dataset.val=btn.dataset.val})});
+    nxt.addEventListener('click',()=>{
+      sAnswers[q.id]=nxt.dataset.val;
+      sQueue.forEach(oq=>{if(oq.condition&&!oq.condition(sAnswers))delete sAnswers[oq.id]});
+      showSCurrentQ();
+    });
+  }
+  document.getElementById('s-q-back').addEventListener('click',()=>{
+    delete sAnswers[q.id];
+    // Find previous condition-passing answered question
+    const prev=sQueue.slice(0,sQIndex).filter(oq=>sAnswers[oq.id]!==undefined&&(!oq.condition||oq.condition(sAnswers))).pop();
+    if(prev){delete sAnswers[prev.id];showSCurrentQ()}
+    else showSPrimary();
+  });
+  
+}
+
+function sEditQ(idx){
+  const q=sQueue[idx];if(!q)return;
+  // Clear this and subsequent answers
+  sQueue.slice(idx).forEach(oq=>delete sAnswers[oq.id]);
+  sQueue.forEach(oq=>{if(oq.condition&&!oq.condition(sAnswers))delete sAnswers[oq.id]});
+  showSCurrentQ();
+}
+
+function showSOffer(){
+  sQIndex=-1;renderSBar();document.getElementById('steps-answered').innerHTML='';
+  sOfferItems=buildOffer(sSelectedCats,sAnswers);
+  const el=document.getElementById('steps-current');
+  el.innerHTML=``;
+  const offerDiv=renderOfferSection(sOfferItems,'s',
+    ()=>{document.getElementById('steps-answered').innerHTML='';el.innerHTML='';renderForm(sOfferItems,()=>showSOffer(),el)},
+    ()=>startSteps());
+  const backRow=document.createElement('div');backRow.style.marginBottom='1rem';backRow.innerHTML=`<button class="btn-back" id="s-offer-back">← Back</button>`;
+  offerDiv.prepend(backRow);el.appendChild(offerDiv);
+  document.getElementById('s-offer-back').addEventListener('click',showSPrimary);
+  
+}
+
+/* ══════════════════════════════════════════
+   CHAT MODE
+══════════════════════════════════════════ */
+let cSelectedCats=[],cAnswers={},cQueue=[],cQDone=0,cQTotal=0,cOfferItems={},cHistory=[],cStepCounter=0;
+const msgsEl=document.getElementById('msgs'),chatOpts=document.getElementById('chat-opts'),chatOffer=document.getElementById('chat-offer'),chatForm=document.getElementById('chat-form'),progFill=document.getElementById('prog-fill'),progLbl=document.getElementById('prog-lbl');
+
+function cAddBubble(role,html,sid){return new Promise(res=>{const row=document.createElement('div');row.className='brow '+role;if(role==='agent')row.innerHTML=`<div class="av agent">A</div><div class="bbl agent">${html}</div>`;else{row.innerHTML=`<div class="bbl user" title="Click to change"><span>${html}</span><div class="edit-hint">✏ Click to change</div></div><div class="av user">Y</div>`;row.querySelector('.bbl.user').addEventListener('click',()=>cGoBack(sid))}row.dataset.sid=sid||'';msgsEl.appendChild(row);setTimeout(()=>{(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})();res()},60)})}
+function cShowTyping(){const r=document.createElement('div');r.className='brow agent';r.id='ctyping';r.innerHTML=`<div class="av agent">A</div><div class="bbl agent"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;msgsEl.appendChild(r);(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})()}
+function cRemoveTyping(){const t=document.getElementById('ctyping');if(t)t.remove()}
+function cUpdateProg(){const total=cQueue.filter(q=>!q.condition||q.condition(cAnswers)).length;const done=cQueue.filter(q=>cAnswers[q.id]!==undefined&&(!q.condition||q.condition(cAnswers))).length;const pct=total>0?Math.round(done/total*100):0;progFill.style.width=pct+'%';progLbl.textContent=pct>=100?'All done!':`Question ${done+1} of ${total}`}
+function cPrune(sid){Array.from(msgsEl.querySelectorAll('.brow')).forEach(r=>{if(parseInt(r.dataset.sid||0)>=sid)r.remove()});cHistory=cHistory.filter(h=>h.sid<sid)}
+function cGoBack(sid){const step=cHistory.find(h=>h.sid===sid);if(!step)return;chatOffer.innerHTML='';chatOffer.style.display='block';chatForm.innerHTML='';cPrune(sid);if(step.type==='cats'){cSelectedCats=[];cAnswers={};cQueue=[];cQDone=0;cQTotal=0;cUpdateProg();chatOpts.innerHTML='';cShowCatPicker()}else{const q=cQueue.find(q=>q.id===step.qid);if(q){delete cAnswers[q.id];cQueue.forEach(oq=>{if(oq.condition&&!oq.condition(cAnswers))delete cAnswers[oq.id]});cUpdateProg();chatOpts.innerHTML='';cShowQuestion(q,true)}}(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})()}
+
+function cBuildQueue(){cQueue=[];cSelectedCats.forEach(c=>(FOLLOW_UPS[c]||[]).forEach(q=>cQueue.push(q)));cQueue.push(...SHARED_QS);cQTotal=cQueue.filter(q=>!q.condition||q.condition(cAnswers)).length;cQDone=cQueue.filter(q=>cAnswers[q.id]!==undefined&&(!q.condition||q.condition(cAnswers))).length}
+function cRunQueue(){const rem=cQueue.filter(q=>cAnswers[q.id]===undefined&&(!q.condition||q.condition(cAnswers)));if(rem.length===0){cShowOffer();return}cShowQuestion(rem[0])}
+
+function startChat(){cSelectedCats=[];cAnswers={};cQueue=[];cQDone=0;cQTotal=0;cOfferItems={};cHistory=[];cStepCounter=0;
+  (async()=>{cShowTyping();await new Promise(r=>setTimeout(r,750));cRemoveTyping();
+    const row=document.createElement('div');row.className='brow agent';row.dataset.sid='0';row.innerHTML=`<div class="av agent">A</div><div class="bbl agent">Hey there! I'm excited to help. First off — <strong>which services are you interested in?</strong> Pick everything that applies and we'll go from there.</div>`;msgsEl.appendChild(row);await new Promise(r=>setTimeout(r,300));cShowCatPicker()})()}
+
+function cShowCatPicker(){chatOpts.innerHTML='';const wrap=document.createElement('div');let sel=[...cSelectedCats];
+  const grid=document.createElement('div');grid.className='cat-grid';grid.style.paddingLeft='0';
+  Object.entries(CATS).forEach(([key,cat])=>{const card=document.createElement('button');card.className='cat-card'+(sel.includes(key)?' sel':'');card.innerHTML=`<span class="cat-icon">${ICONS[cat.iconKey]}</span><span class="cat-name">${cat.label}</span><span class="cat-sub">${cat.sub}</span>${cat.startingAt?`<span class="cat-price">${cat.startingAt}</span>`:''}`; card.onclick=()=>{card.classList.toggle('sel');if(sel.includes(key))sel=sel.filter(x=>x!==key);else sel.push(key);confirmBtn.classList.toggle('show',sel.length>0)};grid.appendChild(card)});
+  const confirmBtn=document.createElement('button');confirmBtn.className='confirm-btn'+(sel.length?' show':'');confirmBtn.style.marginLeft='0';confirmBtn.textContent='These look right →';
+  confirmBtn.onclick=async()=>{chatOpts.innerHTML='';const sid=++cStepCounter;cSelectedCats=[...sel];const labels=sel.map(k=>CATS[k].label).join(', ');cHistory.push({sid,type:'cats'});cBuildQueue();cUpdateProg();await cAddBubble('user',labels,sid);await new Promise(r=>setTimeout(r,300));cRunQueue()};
+  wrap.appendChild(grid);wrap.appendChild(confirmBtn);chatOpts.appendChild(wrap);(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})()}
+
+async function cShowQuestion(q,instant){chatOpts.innerHTML='';if(!instant){cShowTyping();await new Promise(r=>setTimeout(r,680));cRemoveTyping()}
+  const ar=document.createElement('div');ar.className='brow agent';ar.dataset.sid=cStepCounter+1;ar.innerHTML=`<div class="av agent">A</div><div class="bbl agent">${q.msg}</div>`;msgsEl.appendChild(ar);(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})();
+  const wrap=document.createElement('div');let multiSel=[];const list=document.createElement('div');list.className='opts-list-chat';
+  q.opts.forEach(opt=>{const btn=document.createElement('button');btn.className='opt-chat';btn.textContent=opt.chat||opt.label;
+    if(q.multi){btn.onclick=()=>{btn.classList.toggle('sel');if(multiSel.includes(opt.val))multiSel=multiSel.filter(x=>x!==opt.val);else multiSel.push(opt.val);confirmBtn.classList.toggle('show',multiSel.length>0)}}
+    else{btn.onclick=()=>cHandleAnswer(q,opt.val,opt.chat||opt.label)}
+    list.appendChild(btn)});
+  wrap.appendChild(list);
+  let confirmBtn;
+  if(q.multi){confirmBtn=document.createElement('button');confirmBtn.className='confirm-btn chat';confirmBtn.textContent='Confirm →';confirmBtn.onclick=()=>{const labels=multiSel.map(v=>{const o=q.opts.find(o=>o.val===v);return o?o.chat||o.label:v}).join(', ');cHandleAnswer(q,multiSel,labels)};wrap.appendChild(confirmBtn)}
+  chatOpts.appendChild(wrap);(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})()}
+
+async function cHandleAnswer(q,val,display){chatOpts.innerHTML='';const sid=++cStepCounter;const ars=msgsEl.querySelectorAll('.brow.agent');if(ars.length)ars[ars.length-1].dataset.sid=sid;
+  cAnswers[q.id]=val;cQueue.forEach(oq=>{if(oq.condition&&!oq.condition(cAnswers))delete cAnswers[oq.id]});
+  cHistory.push({sid,type:'question',qid:q.id});cUpdateProg();await cAddBubble('user',display,sid);await new Promise(r=>setTimeout(r,300));cRunQueue()}
+
+async function cShowOffer(){chatOpts.innerHTML='';cShowTyping();await new Promise(r=>setTimeout(r,980));cRemoveTyping();cOfferItems=buildOffer(cSelectedCats,cAnswers);
+  const count=Object.keys(cOfferItems).length;const ar=document.createElement('div');ar.className='brow agent';ar.innerHTML=`<div class="av agent">A</div><div class="bbl agent">Here's a custom offer with <strong>${count} service${count!==1?'s':''}</strong> matched to your project. Remove anything that doesn't fit.</div>`;msgsEl.appendChild(ar);(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})();await new Promise(r=>setTimeout(r,400));
+  chatOffer.innerHTML='';
+  const backRow=document.createElement('div');backRow.style.marginBottom='1rem';backRow.innerHTML=`<button class="btn-back" id="c-offer-back">← Back</button>`;
+  const offerDiv=renderOfferSection(cOfferItems,'c',
+    ()=>{chatOffer.style.display='none';renderForm(cOfferItems,()=>{chatForm.innerHTML='';chatOffer.style.display='block';(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})()},chatForm)},
+    ()=>{msgsEl.innerHTML='';chatOffer.innerHTML='';chatForm.innerHTML='';startChat()});
+  chatOffer.appendChild(backRow);chatOffer.appendChild(offerDiv);
+  document.getElementById('c-offer-back').addEventListener('click',()=>{chatOffer.innerHTML='';const lastQ=cQueue.filter(q=>!q.condition||q.condition(cAnswers)).pop();if(lastQ){delete cAnswers[lastQ.id];cQueue.forEach(oq=>{if(oq.condition&&!oq.condition(cAnswers))delete cAnswers[oq.id]});cUpdateProg();cShowQuestion(lastQ,true)}});
+  progFill.style.width='100%';progLbl.textContent='All done!';(function(){var cw=document.querySelector('.chat-win');if(cw)cw.scrollTop=cw.scrollHeight;})()}
+</script>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
@@ -809,6 +2164,290 @@
       imageObserver.observe(el);
     }
   });
+
+  // ── QUOTE WIDGET (removed — replaced by inline widget script) ──
+  (function() { return; // legacy block kept for structure only
+    var state = { cat: null, brand: {}, web: {}, social: {}, socialModel: null, socialOnetimeItems: [] };
+
+    function showFlow(cat) {
+      document.querySelectorAll('.qw-flow').forEach(f => f.classList.remove('active'));
+      document.getElementById('qw-step0').style.display = 'none';
+      var flow = document.getElementById('qw-flow-' + cat);
+      if (flow) flow.classList.add('active');
+    }
+
+    function showStep(flowId, stepId) {
+      var flow = document.getElementById('qw-flow-' + flowId);
+      if (!flow) return;
+      flow.querySelectorAll('.qw-step').forEach(s => s.classList.remove('active'));
+      var step = document.getElementById('qw-' + flowId + '-' + stepId);
+      if (step) step.classList.add('active');
+    }
+
+    function goBack(target) {
+      if (target === 'step0') {
+        document.querySelectorAll('.qw-flow').forEach(f => f.classList.remove('active'));
+        document.querySelector('#qw-success').classList.remove('active');
+        document.getElementById('qw-step0').style.display = '';
+        document.querySelectorAll('.qw-cat-btn').forEach(b => b.classList.remove('active'));
+        state = { cat: null, brand: {}, web: {}, social: {}, socialModel: null, socialOnetimeItems: [] };
+      } else if (target === 'brand-1') {
+        showStep('brand', '1');
+      } else if (target === 'brand-2') {
+        showStep('brand', '2');
+      } else if (target === 'web-1') {
+        showStep('web', '1');
+      } else if (target === 'web-2') {
+        showStep('web', '2');
+      } else if (target === 'social-1') {
+        showStep('social', '1');
+      } else if (target === 'social-onetime') {
+        showStep('social', 'onetime');
+      }
+    }
+
+    // Category buttons
+    document.querySelectorAll('.qw-cat-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var cat = btn.dataset.cat;
+        state.cat = cat;
+        document.querySelectorAll('.qw-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (cat === 'consultation') {
+          showFlow('consultation');
+        } else {
+          showFlow(cat);
+        }
+      });
+    });
+
+    // Consultation go button
+    var consultBtn = document.getElementById('qw-consult-go');
+    if (consultBtn) {
+      consultBtn.addEventListener('click', function() {
+        window.location.href = 'mailto:thysrany@gmail.com?subject=Free%20Consultation%20Request';
+      });
+    }
+
+    // BRAND flow
+    function setupSingleOpts(containerSelector, nextBtnId, onSelect) {
+      document.querySelectorAll(containerSelector + ' .qw-opt:not(.qw-multi)').forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          document.querySelectorAll(containerSelector + ' .qw-opt:not(.qw-multi)').forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          var btn = document.getElementById(nextBtnId);
+          if (btn) btn.disabled = false;
+          if (onSelect) onSelect(opt);
+        });
+      });
+    }
+
+    setupSingleOpts('#qw-brand-1', 'qw-brand-next', function(opt) {
+      state.brand.val = opt.dataset.val;
+      state.brand.name = opt.dataset.name;
+      state.brand.price = opt.dataset.price;
+      state.brand.pricerange = opt.dataset.pricerange;
+      state.brand.timeline = opt.dataset.timeline;
+    });
+
+    document.getElementById('qw-brand-next').addEventListener('click', function() {
+      showStep('brand', '2');
+    });
+
+    setupSingleOpts('#qw-brand-2', 'qw-brand-timeline-next', function(opt) {
+      state.brand.timeline_pref = opt.dataset.val;
+    });
+
+    document.getElementById('qw-brand-timeline-next').addEventListener('click', function() {
+      buildSummary('qw-brand-summary', [
+        { name: state.brand.name, price: state.brand.pricerange, sub: 'Est. ' + state.brand.timeline }
+      ], null, null);
+      showStep('brand', 'form');
+    });
+
+    document.getElementById('qw-brand-submit').addEventListener('click', function() {
+      if (validateForm(['b-first','b-last','b-email','b-company','b-industry','b-existing'])) {
+        showSuccess();
+      }
+    });
+
+    // WEB flow
+    setupSingleOpts('#qw-web-1', 'qw-web-next', function(opt) {
+      state.web.val = opt.dataset.val;
+      state.web.name = opt.dataset.name;
+      state.web.price = opt.dataset.price;
+      state.web.pricerange = opt.dataset.pricerange;
+      state.web.setup = opt.dataset.setup;
+      state.web.timeline = opt.dataset.timeline;
+    });
+
+    document.getElementById('qw-web-next').addEventListener('click', function() {
+      showStep('web', '2');
+    });
+
+    setupSingleOpts('#qw-web-2', 'qw-web-timeline-next', function(opt) {
+      state.web.timeline_pref = opt.dataset.val;
+    });
+
+    document.getElementById('qw-web-timeline-next').addEventListener('click', function() {
+      buildSummary('qw-web-summary', [
+        { name: state.web.name, price: state.web.pricerange, sub: (state.web.setup ? state.web.setup + ' · ' : '') + 'Est. ' + state.web.timeline }
+      ], null, null);
+      showStep('web', 'form');
+    });
+
+    document.getElementById('qw-web-submit').addEventListener('click', function() {
+      if (validateForm(['w-first','w-last','w-email','w-company','w-industry','w-existing'])) {
+        showSuccess();
+      }
+    });
+
+    // SOCIAL flow — model pick
+    setupSingleOpts('#qw-social-1', 'qw-social-1-next', function(opt) {
+      state.socialModel = opt.dataset.val;
+    });
+
+    document.getElementById('qw-social-1-next').addEventListener('click', function() {
+      if (state.socialModel === 'onetime') {
+        showStep('social', 'onetime');
+      } else {
+        showStep('social', 'retainer');
+      }
+    });
+
+    // Multi-select for one-time
+    document.querySelectorAll('#qw-social-onetime .qw-multi').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        opt.classList.toggle('selected');
+        var anySelected = document.querySelectorAll('#qw-social-onetime .qw-multi.selected').length > 0;
+        document.getElementById('qw-social-onetime-next').disabled = !anySelected;
+        state.socialOnetimeItems = [];
+        document.querySelectorAll('#qw-social-onetime .qw-multi.selected').forEach(function(o) {
+          state.socialOnetimeItems.push({ name: o.dataset.name, price: parseInt(o.dataset.price), pricerange: o.dataset.pricerange, timeline: o.dataset.timeline });
+        });
+      });
+    });
+
+    document.getElementById('qw-social-onetime-next').addEventListener('click', function() {
+      showStep('social', 'timeline');
+    });
+
+    setupSingleOpts('#qw-social-retainer', 'qw-social-retainer-next', function(opt) {
+      state.social.val = opt.dataset.val;
+      state.social.name = opt.dataset.name;
+      state.social.price = opt.dataset.price;
+      state.social.pricerange = opt.dataset.pricerange;
+      state.social.timeline = opt.dataset.timeline;
+    });
+
+    document.getElementById('qw-social-retainer-next').addEventListener('click', function() {
+      buildSummary('qw-social-summary', [
+        { name: state.social.name, price: state.social.pricerange, sub: state.social.timeline }
+      ], null, null);
+      showStep('social', 'form');
+      document.getElementById('qw-social-form-back').dataset.back = 'social-retainer';
+    });
+
+    setupSingleOpts('#qw-social-timeline', 'qw-social-timeline-next', function(opt) {
+      state.social.timeline_pref = opt.dataset.val;
+    });
+
+    document.getElementById('qw-social-timeline-next').addEventListener('click', function() {
+      var items = state.socialOnetimeItems;
+      var total = items.reduce(function(a, i) { return a + i.price; }, 0);
+      buildSummary('qw-social-summary', items.map(function(i) {
+        return { name: i.name, price: i.pricerange, sub: 'Est. ' + i.timeline };
+      }), total, null);
+      showStep('social', 'form');
+      document.getElementById('qw-social-form-back').dataset.back = 'social-timeline';
+    });
+
+    document.getElementById('qw-social-form-back').addEventListener('click', function() {
+      var target = document.getElementById('qw-social-form-back').dataset.back || 'social-timeline';
+      goBack(target);
+    });
+
+    document.getElementById('qw-social-submit').addEventListener('click', function() {
+      if (validateForm(['s-first','s-last','s-email','s-company','s-industry'])) {
+        showSuccess();
+      }
+    });
+
+    // Back buttons
+    document.querySelectorAll('.qw-back[data-back]').forEach(function(btn) {
+      if (btn.id !== 'qw-social-form-back') {
+        btn.addEventListener('click', function() {
+          goBack(btn.dataset.back);
+        });
+      }
+    });
+
+    // Summary builder
+    function buildSummary(containerId, items, total, note) {
+      var el = document.getElementById(containerId);
+      if (!el) return;
+      var html = '<div class="qw-summary-title">Your selection</div>';
+      var runningTotal = 0;
+      items.forEach(function(item) {
+        html += '<div class="qw-summary-item"><div><div class="qw-summary-item-name">' + item.name + '</div>';
+        if (item.sub) html += '<div style="font-size:12px;color:var(--mid);margin-top:2px;">' + item.sub + '</div>';
+        html += '</div><div class="qw-summary-item-price">' + item.price + '</div></div>';
+        var p = parseFloat(String(item.price).replace(/[^0-9.]/g,''));
+        if (!isNaN(p)) runningTotal += p;
+      });
+      if (items.length > 1 || total !== null) {
+        var displayTotal = total !== null ? total : runningTotal;
+        html += '<div class="qw-summary-total"><span>Total</span><span>From $' + displayTotal.toLocaleString() + '</span></div>';
+      }
+      if (note) html += '<div style="font-size:12px;color:var(--mid);margin-top:12px;">' + note + '</div>';
+      el.innerHTML = html;
+    }
+
+    // Form validation
+    function validateForm(ids) {
+      var ok = true;
+      ids.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var parent = el.closest('.qw-field');
+        if (!el.value.trim()) {
+          if (parent) parent.classList.add('error');
+          ok = false;
+        } else {
+          if (parent) parent.classList.remove('error');
+        }
+      });
+      return ok;
+    }
+
+    // Show success
+    function showSuccess() {
+      document.querySelectorAll('.qw-flow').forEach(f => f.classList.remove('active'));
+      document.getElementById('qw-step0').style.display = 'none';
+      document.getElementById('qw-success').classList.add('active');
+    }
+  })();
+</script>
+
+<script>
+document.querySelectorAll('.wk-tier').forEach(function(tier){
+  var track=tier.querySelector('.wk-track'), prev=tier.querySelector('.prev'), next=tier.querySelector('.next');
+  function step(){ var c=track.querySelector('.wk-card'); return c ? c.getBoundingClientRect().width+parseFloat(getComputedStyle(track).columnGap||24) : track.clientWidth; }
+  function update(){
+    var max=track.scrollWidth-track.clientWidth-2;
+    tier.classList.toggle('no-scroll', max<=0);
+    prev.disabled=track.scrollLeft<=2; next.disabled=track.scrollLeft>=max;
+  }
+  var smooth=!window.matchMedia('(prefers-reduced-motion: reduce)').matches?'smooth':'auto';
+  prev.addEventListener('click',function(){ track.scrollBy({left:-step(),behavior:smooth}); });
+  next.addEventListener('click',function(){ track.scrollBy({left:step(),behavior:smooth}); });
+  track.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){ e.preventDefault(); track.scrollBy({left:step(),behavior:smooth}); }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); track.scrollBy({left:-step(),behavior:smooth}); }
+  });
+  var t; track.addEventListener('scroll',function(){ clearTimeout(t); t=setTimeout(update,50); },{passive:true});
+  window.addEventListener('resize',update); window.addEventListener('load',update); update();
+});
 </script>
 </body>
 </html>
