@@ -656,7 +656,7 @@
 .cta-s{width:100%;padding:10px;background:transparent;color:var(--txt-2);border:0.5px solid var(--bdr-2);border-radius:var(--r-md);font-size:13px;font-family:var(--font);cursor:pointer;transition:all .15s}
 .cta-s:hover{background:var(--bg-surf)}
 /* Mode cards */
-.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem}
+.mode-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:1.5rem}
 .mode-card{padding:2rem 1.5rem;border:0.5px solid var(--bdr-2);border-radius:var(--r-xl);background:var(--bg-card);cursor:pointer;text-align:left;font-family:var(--font);transition:all .2s;display:flex;flex-direction:column;gap:14px}
 .mode-card:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(232,0,26,.08)}
 .mode-icon{width:44px;height:44px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center}
@@ -667,6 +667,10 @@
 .mode-tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:4px;font-weight:500;margin-top:4px}
 .mode-tag.fast{background:#FFF0F0;color:#B30014}.mode-tag.guided{background:#F2F2F2;color:#555555}
 .mode-cta{margin-top:auto;font-size:13px;font-weight:500;color:var(--accent);display:flex;align-items:center;gap:4px}
+.start-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem}
+.consult-wrap{display:flex}.consult-wrap>.mode-card{flex:1}
+#mode-screen .mode-grid{height:100%;margin-bottom:0}#mode-screen .mode-card{height:100%}
+@media(max-width:640px){.start-row{grid-template-columns:1fr}}
 /* Form */
 .form-box{background:var(--bg-card);border:0.5px solid var(--bdr);border-radius:var(--r-xl);padding:1.75rem;margin-top:.5rem}
 .form-box h2{font-size:18px;font-weight:500;margin-bottom:4px}.form-sub{font-size:13px;color:var(--txt-2);margin-bottom:1.25rem;line-height:1.6}
@@ -1078,44 +1082,33 @@
     <p>Choose how you'd like to get started.</p>
   </div>
 
-  <!-- FREE CONSULTATION BANNER -->
-  <div id="consult-banner" style="margin-bottom:1.5rem;padding:1rem 1.25rem;background:#fff;border:1.5px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-    <div style="display:flex;align-items:center;gap:0.75rem">
-      <span style="width:36px;height:36px;border-radius:50%;background:var(--gray2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8001A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      </span>
-      <div>
-        <div style="font-size:14px;font-weight:600;color:var(--txt)">Not sure where to start?</div>
-        <div style="font-size:13px;color:var(--txt-2)">Book a free 30-min call — no commitment, no pressure.</div>
-      </div>
-    </div>
-    <button id="consult-banner-btn" style="flex-shrink:0;padding:0.55rem 1.1rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Book a free call →</button>
-  </div>
-
-  <!-- MODE PICKER -->
-  <div id="mode-screen">
-    <div class="mode-grid">
+  <!-- START OPTIONS: instant quote (left) + free call (right) -->
+  <div class="start-row">
+    <div id="mode-screen">
+      <div class="mode-grid">
       <button class="mode-card" id="pick-steps">
         <div class="mode-icon steps">
           <svg viewBox="0 0 24 24" fill="none" stroke="#E8001A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </div>
         <div>
-          <div class="mode-title">Browse &amp; select</div>
-          <div class="mode-desc">Pick the services you need and get an instant quote.</div>
+          <div class="mode-title">Get an instant quote</div>
+          <div class="mode-desc">Pick the services you need and see your price right away.</div>
           <div class="mode-tag fast">Quick &amp; direct</div>
         </div>
         <div class="mode-cta">Get started <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </button>
-      <button class="mode-card" id="pick-chat">
-        <div class="mode-icon chat">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
+      </div>
+    </div>
+
+    <div id="consult-banner" class="consult-wrap">
+      <button class="mode-card" id="consult-banner-btn">
+        <div class="mode-icon steps"><svg viewBox="0 0 24 24" fill="none" stroke="#E8001A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
         <div>
-          <div class="mode-title">Chat with our assistant</div>
-          <div class="mode-desc">Answer a few questions and we'll build a tailored offer.</div>
-          <div class="mode-tag guided">Guided experience</div>
+          <div class="mode-title">Not sure where to start?</div>
+          <div class="mode-desc">Book a free 30-minute call. No commitment, no pressure.</div>
+          <div class="mode-tag guided">Free</div>
         </div>
-        <div class="mode-cta">Start chatting <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        <div class="mode-cta">Book a free call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </button>
     </div>
   </div>
@@ -1127,7 +1120,7 @@
     <div id="steps-current"></div>
     <button class="back-to-modes" id="steps-back-to-modes">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-      Choose a different approach
+      Back
     </button>
   </div>
 
@@ -1736,6 +1729,7 @@ function goToModeScreen(){
   document.getElementById('steps-screen').style.display='none';
   document.getElementById('chat-screen').style.display='none';
   document.getElementById('mode-screen').style.display='block';
+  document.getElementById('consult-banner').style.display='flex';
   document.querySelector('.hdr p').textContent='Choose how you\'d like to get started.';
   // reset chat
   document.getElementById('msgs').innerHTML='';
@@ -1755,6 +1749,7 @@ function _initWidgetListeners(){
   const consultBtn=document.getElementById('consult-banner-btn');
   if(pickSteps) pickSteps.addEventListener('click',()=>{
     document.getElementById('mode-screen').style.display='none';
+    document.getElementById('consult-banner').style.display='none';
     document.getElementById('steps-screen').style.display='block';
     document.querySelector('.hdr p').textContent='Select your services and get an instant quote.';
     document.getElementById('services').scrollIntoView({behavior:'smooth',block:'start'});
